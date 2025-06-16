@@ -1,108 +1,90 @@
 
-# 🛒 BestelApp – Materiaalbeheer voor Techniekers (Aquafin)
+# 🛒 BestelApp – Materiaalbeheer voor techniekers
 
-Een Laravel-webapplicatie waarmee techniekers van Aquafin materiaal kunnen raadplegen, bestellen en opvolgen. Admins beheren het aanbod en gebruikers. Alles is beveiligd, getest en gestructureerd met duidelijke documentatie en design.
+Een webapplicatie in Laravel waarmee techniekers van Aquafin materiaal kunnen bestellen en opvolgen voor herstellingen en onderhoudswerken.
 
 🔗 **Repository**: [https://github.com/kiranchaudry97/groep5.project.bestelapp](https://github.com/kiranchaudry97/groep5.project.bestelapp)
 
 ---
 
-## 📁 Mappenstructuur
+## 📁 Projectstructuur
 
 ```text
 groep5.project.bestelapp/
-├── app/                  # Controllers, Models
-├── resources/            # Blade views, CSS, JS
-├── routes/               # web.php, api.php
-├── database/             # Migraties, seeders
-├── public/               # Publieke toegang, index.php
-├── config/               # Laravel-configuratie
-├── tests/                # PHPUnit tests
-├── package.json          # Frontend dependencies
-├── vite.config.js        # Vite configuratie
-└── .env                  # Omgevingsinstellingen
+│
+├── app/                    # Models, Controllers, Services
+├── bootstrap/              # Laravel bootstrap-bestanden
+├── config/                 # Configuratiebestanden
+├── database/               # Migraties, seeders, factories
+├── public/                 # Publieke webroot
+├── resources/              # Views (Blade), CSS, JS
+├── routes/                 # Web.php en API-routes
+├── storage/                # Logs, cache en uploads
+├── tests/                  # PHPUnit testbestanden
+├── vite.config.js          # Vite configuratiebestand
+├── tailwind.config.js      # Tailwind CSS configuratie
+├── package.json            # Node.js dependencies en scripts
+└── .env                    # Omgevingsvariabelen (niet committen)
 ```
 
 ---
 
-## 📦 `package.json` uitleg
+## 📦 package.json
 
-- `vite`: compileert assets
-- `tailwindcss`: zorgt voor styling
-- `laravel-vite-plugin`: koppelt dit aan Laravel views
+```json
+{
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "laravel-vite-plugin": "^0.7.2",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23",
+    "vite": "^4.0.0"
+  }
+}
+```
+
+- `vite`: bundelt CSS en JS
+- `tailwindcss`: utility-first CSS
+- `laravel-vite-plugin`: koppelt Vite aan Laravel
 
 ---
 
-## 📌 Projectdoel
+## 🧭 Overzicht
 
-Techniekers van Aquafin moeten dagelijks kunnen rekenen op materiaal. Deze app laat hen bestellingen plaatsen met leverdatum. Admins beheren materialen, voorraden en rollen.
+De applicatie biedt:
+- ✅ Bestelpagina voor techniekers
+- ✅ Adminbeheer van materiaal
+- ✅ Leverdatum toevoegen
+- ✅ Historiek van bestellingen
 
 ---
 
 ## ✅ Functionaliteiten
 
-- Gebruikersregistratie en login
-- Materiaal raadplegen en bestellen
-- Leverdatum instellen
-- Rollen en rechten beheren
-- Admin- en gebruikersdashboards
+- 🔐 Inloggen en registreren
+- 🛒 Toevoegen aan winkelwagen
+- 🗂️ Admin kan materiaal toevoegen, verwijderen
+- 📅 Leverdatum instellen per bestelling
 
 ---
 
-## 🧭 Flowchart van de applicatie
+## 🖼️ Screenshots (in README.md plaatsen als je ze hebt)
 
-📷 *Functioneel overzicht van de gebruikersstroom:*
-
-![Flowchart](bestel_app_flowchart.jpeg)
-
----
-
-## 🎨 Moodboard & Designstijl
-
-📷 *UI-kleuren, lettertypes, knoppen, pictogrammen*
-
-![Moodboard](bestel_app_moodboard.jpeg)
-
----
-
-## 🖼️ Screenshots van de applicatie
-
-### 👤 Admin Login & Dashboard
-![Admin dashboard](admin-dashboard.jpg)
-
-### 🛠️ Materiaalbeheer
-![Materiaalbeheer](admin-materiaal-beheer.jpg)
-
-### ✏️ Materiaal Bewerken
-![Materiaal Bewerken](admin-materiaal-bewerken.jpg)
-
-### ➕ Materiaal Toevoegen
-![Materiaal Toevoegen](admin-materiaal-toevoegen.jpg)
-
-### 👷 Technieker Dashboard
-![Gebruiker dashboard](gebruiker-dashboard.jpg)
-
-### 🛒 Besteloverzicht (technieker)
-![Bestelling Detail](gebruiker-bestellingen-bestelnummer.jpg)
-
-### 📦 Materiaal Selectie & Filtering
-![Materiaal overzicht](gebruiker-materiaal-overzicht.jpg)
-
-### 👤 Profielpagina
-![Profielpagina](gebruiker-profiel.jpg)
-
----
-
-## 🧪 Prototypeschermen
-
-📷 *Volledig klikbare mockups*
-
-![Prototype overzicht](bestel_app_prototype.jpg)
+📷 Homepagina  
+📷 Winkelwagen  
+📷 Dashboard  
+📷 Bestellingsoverzicht
 
 ---
 
 ## ⚙️ Installatie
 
+### Laravel backend
 ```bash
 composer install
 cp .env.example .env
@@ -119,16 +101,14 @@ npm run dev
 
 ---
 
-## 🗃️ Database & ERD
+## 🗃️ Database & Relaties
 
-📷 *ERD-datamodel: gebruikers, rollen, materialen, bestellingen*
-
-![ERD](2af6824c-be7f-4496-a6db-b6335eb6ae43.jpg)
+📷 Voeg hier een ERD-afbeelding toe
 
 Relaties:
-- `gebruikers` ↔ `bestellingen`
-- `bestellingen` ↔ `bestelregels` ↔ `materialen`
-- `gebruikers` ↔ `rollen` ↔ `rechten`
+- `User` ↔ `Orders` (1:N)
+- `Order` ↔ `OrderItems` (1:N)
+- `Product` ↔ `OrderItems` (1:N)
 
 ---
 
@@ -138,59 +118,68 @@ Relaties:
 php artisan test
 ```
 
-- Bestelling plaatsen
-- Validatiecontrole
-- Rechtenbeheer
+📷 Voeg hier een screenshot toe van testresultaten
 
 ---
 
-## 🔒 Beveiliging
+## 🔒 Security
 
-- CSRF-beveiliging op formulieren
+- Bcrypt hashing
+- CSRF-bescherming
+- Middleware voor admin routes
 - Validatie via Form Requests
-- Rollen- en rechtenbeheer via middleware
-- Bcrypt hashing voor wachtwoorden
 
 ---
 
-## 🧠 Codevoorbeeld – Bestelling plaatsen
+## 🧠 Code Uitleg (Overzicht)
 
+### 🛒 Voorbeeld controller: Bestelling plaatsen
 ```php
-public function store(Request $request) {
-  $data = $request->validate([
-    'leverdatum' => 'required|date',
-    'items' => 'required|array'
-  ]);
-  $bestelling = Bestelling::create([
-    'gebruiker_id' => auth()->id(),
-    'leverdatum' => $data['leverdatum'],
-  ]);
-  foreach ($data['items'] as $item) {
-    Bestelregel::create([
-      'bestelling_id' => $bestelling->id,
-      'materiaal_id' => $item['materiaal_id'],
-      'hoeveelheid' => $item['aantal'],
-      'prijs' => $item['prijs']
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'leverdatum' => 'required|date',
+        'items' => 'required|array',
     ]);
-  }
-  return redirect()->route('bestellingen.index');
+
+    $order = Order::create([
+        'user_id' => auth()->id(),
+        'leverdatum' => $validated['leverdatum']
+    ]);
+
+    foreach ($validated['items'] as $item) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $item['product_id'],
+            'aantal' => $item['aantal']
+        ]);
+    }
+
+    return redirect()->route('orders.index')->with('success', 'Bestelling geplaatst.');
 }
 ```
 
+- ✅ Valideert input
+- ✅ Slaat de bestelling en items op
+- ✅ Gebruikt Eloquent relaties
+
 ---
 
-## 👥 Team
+## 👨‍👩‍👧‍👦 Team
 
 Graduaat Programmeren : Kiran Chaud-ry , Elion Rexhepi, Ellis Damian Viracocha, Yazid-El-Yazghi
 
+---
 
-## 📅 Roadmap / Trello
+## 📅 Trello
 
-🔗 Voeg hier je Trello-link toe  
-📷 Voeg een screenshot toe van het sprintbord
+📷 Voeg hier een screenshot toe  
+🔗 Voeg hier je Trello-link toe
 
 ---
 
 ## 📄 Licentie
 
-MIT – Vrij te gebruiken, aanpassen en delen met bronvermelding.
+MIT – vrij gebruik met bronvermelding.
+
+---
