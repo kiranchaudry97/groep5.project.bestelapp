@@ -184,8 +184,6 @@ public function store(Request $request) {
 Graduaat Programmeren : Kiran Chaud-ry , Elion Rexhepi, Ellis Damian Viracocha, Yazid-El-Yazghi
 
 
----
-
 ## 📅 Roadmap / Trello
 
 🔗 Voeg hier je Trello-link toe  
