@@ -9,12 +9,19 @@ use App\Http\Controllers\Admin\TechniekerAccountController;
 use App\Http\Controllers\Technieker\OrderController;
 
 /*
-Redirect root naar login*/
+|--------------------------------------------------------------------------
+| Redirect root naar login
+|--------------------------------------------------------------------------
+*/
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-/* Dashboard met rol-afhandeling*/
+/*
+|--------------------------------------------------------------------------
+| Dashboard met rol-afhandeling
+|--------------------------------------------------------------------------
+*/
 Route::get('/dashboard', function () {
     $user = auth()->user();
 
@@ -27,7 +34,11 @@ Route::get('/dashboard', function () {
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-/* Admin Routes */
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -48,7 +59,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('users', [TechniekerAccountController::class, 'index'])->name('users.index');
 });
 
-/* Technieker Routes
+/*
+|--------------------------------------------------------------------------
+| Technieker Routes
+|--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->prefix('technieker')->name('technieker.')->group(function () {
     Route::get('/dashboard', function () {
@@ -70,8 +84,9 @@ Route::middleware(['auth'])->prefix('technieker')->name('technieker.')->group(fu
 });
 
 /*
- Profielbeheer (voor admin & technieker)
-
+|--------------------------------------------------------------------------
+| Profielbeheer (voor admin & technieker)
+|--------------------------------------------------------------------------
 */
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -80,11 +95,8 @@ Route::middleware('auth')->group(function () {
 });
 
 /*
- Auth routes (Laravel Breeze / Jetstream / Fortify)
-
+|--------------------------------------------------------------------------
+| Auth routes (Laravel Breeze / Jetstream / Fortify)
+|--------------------------------------------------------------------------
 */
-<<<<<<< HEAD
 require __DIR__.'/auth.php';
-=======
-require __DIR__.'/auth.php';
->>>>>>> ca118215b674a951c71becc151a472cd9a885b31
