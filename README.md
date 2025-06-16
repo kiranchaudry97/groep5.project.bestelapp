@@ -1,61 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🛒 BestelApp – Materiaalbeheer voor techniekers
 
-## About Laravel
+Een webapplicatie in Laravel waarmee techniekers van Aquafin materiaal kunnen bestellen en opvolgen voor herstellingen en onderhoudswerken.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+🔗 **Repository**: [https://github.com/kiranchaudry97/groep5.project.bestelapp](https://github.com/kiranchaudry97/groep5.project.bestelapp)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📁 Projectstructuur
 
-## Learning Laravel
+```text
+groep5.project.bestelapp/
+│
+├── app/                    # Models, Controllers, Services
+├── bootstrap/              # Laravel bootstrap-bestanden
+├── config/                 # Configuratiebestanden
+├── database/               # Migraties, seeders, factories
+├── public/                 # Publieke webroot
+├── resources/              # Views (Blade), CSS, JS
+├── routes/                 # Web.php en API-routes
+├── storage/                # Logs, cache en uploads
+├── tests/                  # PHPUnit testbestanden
+├── vite.config.js          # Vite configuratiebestand
+├── tailwind.config.js      # Tailwind CSS configuratie
+├── package.json            # Node.js dependencies en scripts
+└── .env                    # Omgevingsvariabelen (niet committen)
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📦 package.json
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```json
+{
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "laravel-vite-plugin": "^0.7.2",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23",
+    "vite": "^4.0.0"
+  }
+}
+```
 
-## Laravel Sponsors
+- `vite`: bundelt CSS en JS
+- `tailwindcss`: utility-first CSS
+- `laravel-vite-plugin`: koppelt Vite aan Laravel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🧭 Overzicht
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+De applicatie biedt:
+- ✅ Bestelpagina voor techniekers
+- ✅ Adminbeheer van materiaal
+- ✅ Leverdatum toevoegen
+- ✅ Historiek van bestellingen
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ✅ Functionaliteiten
 
-## Code of Conduct
+- 🔐 Inloggen en registreren
+- 🛒 Toevoegen aan winkelwagen
+- 🗂️ Admin kan materiaal toevoegen, verwijderen
+- 📅 Leverdatum instellen per bestelling
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🖼️ Screenshots (in README.md plaatsen als je ze hebt)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+📷 Homepagina  
+📷 Winkelwagen  
+📷 Dashboard  
+📷 Bestellingsoverzicht
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚙️ Installatie
+
+### Laravel backend
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+### Frontend (Vite)
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 🗃️ Database & Relaties
+
+📷 Voeg hier een ERD-afbeelding toe
+
+Relaties:
+- `User` ↔ `Orders` (1:N)
+- `Order` ↔ `OrderItems` (1:N)
+- `Product` ↔ `OrderItems` (1:N)
+
+---
+
+## 🧪 Testen
+
+```bash
+php artisan test
+```
+
+📷 Voeg hier een screenshot toe van testresultaten
+
+---
+
+## 🔒 Security
+
+- Bcrypt hashing
+- CSRF-bescherming
+- Middleware voor admin routes
+- Validatie via Form Requests
+
+---
+
+## 🧠 Code Uitleg (Overzicht)
+
+### 🛒 Voorbeeld controller: Bestelling plaatsen
+```php
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'leverdatum' => 'required|date',
+        'items' => 'required|array',
+    ]);
+
+    $order = Order::create([
+        'user_id' => auth()->id(),
+        'leverdatum' => $validated['leverdatum']
+    ]);
+
+    foreach ($validated['items'] as $item) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $item['product_id'],
+            'aantal' => $item['aantal']
+        ]);
+    }
+
+    return redirect()->route('orders.index')->with('success', 'Bestelling geplaatst.');
+}
+```
+
+- ✅ Valideert input
+- ✅ Slaat de bestelling en items op
+- ✅ Gebruikt Eloquent relaties
+
+---
+
+## 👨‍👩‍👧‍👦 Team
+
+Graduaat Programmeren : Kiran Chaud-ry , Elion Rexhepi, Ellis Damian Viracocha, Yazid-El-Yazghi
+
+---
+
+## 📅 Trello
+
+📷 Voeg hier een screenshot toe  
+🔗 Voeg hier je Trello-link toe
+
+---
+
+## 📄 Licentie
+
+MIT – vrij gebruik met bronvermelding.
+
+---
+
