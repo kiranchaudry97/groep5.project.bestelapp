@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Voeg een kolom toe aan de orders-tabel.
-     */
+    
     public function up()
 {
     Schema::table('orders', function (Blueprint $table) {
