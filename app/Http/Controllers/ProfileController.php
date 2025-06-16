@@ -30,12 +30,12 @@ class ProfileController extends Controller
         $user = $request->user();
         $user->fill($request->validated());
 
-        // ✅ Optioneel wachtwoord bijwerken indien ingevuld
+        //  Optioneel wachtwoord bijwerken indien ingevuld
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 
-        // ✅ Reset e-mailverificatie als e-mail werd aangepast
+        //  Reset e-mailverificatie als e-mail werd aangepast
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
