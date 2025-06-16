@@ -1,24 +1,35 @@
+# 🌐 Algemene logs & systeem
 *.log
 .DS_Store
+Thumbs.db
+
+# 🔐 Omgevingsbestanden
 .env
 .env.backup
 .env.production
-.phpactor.json
+auth.json
+
+# 🧪 Test en cache
 .phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
+.phpunit.cache
+.phpactor.json
+
+# 💻 Editor- en IDE-bestanden
 /.vscode
+/.idea
+/.fleet
 /.zed
-/auth.json
+
+# 🚀 Laravel-gerelateerde bestanden/mappen
+/vendor
 /node_modules
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+/.nova
+
+# 🛠 Homestead-config
 Homestead.json
 Homestead.yaml
-Thumbs.db
