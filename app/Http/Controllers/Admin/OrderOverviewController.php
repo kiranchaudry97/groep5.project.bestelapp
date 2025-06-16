@@ -15,7 +15,7 @@ class OrderOverviewController extends Controller
     {
         $bestellingen = Order::with(['user', 'items.material'])->latest()->get();
 
-        // ✅ Statistieken verzamelen
+       
         $stats = [
             'totaal' => $bestellingen->count(),
             'in_behandeling' => $bestellingen->where('status', 'in_behandeling')->count(),
