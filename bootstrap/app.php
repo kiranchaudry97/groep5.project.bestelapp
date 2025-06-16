@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(_DIR_))
     ->withRouting(
@@ -8,9 +10,9 @@ return Application::configure(basePath: dirname(_DIR_))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (\Illuminate\Foundation\Configuration\Middleware $middleware) {
+    ->withMiddleware(function (Middleware $middleware): void {
         //
     })
-    ->withExceptions(function (\Illuminate\Foundation\Configuration\Exceptions $exceptions) {
+    ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
