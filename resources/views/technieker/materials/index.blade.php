@@ -79,6 +79,9 @@
           <div>
             <h2 class="text-base font-bold text-gray-900">{{ $material->naam }}</h2>
             <p class="text-sm text-gray-600">{{ $material->categorie }}</p>
+            <p class="text-sm text-gray-700">
+              Voorraad: <span class="font-semibold">{{ $material->voorraad }}</span> stuks
+            </p>
           </div>
 
           <form method="POST" action="{{ route('technieker.cart.add') }}" class="flex items-center justify-between">
