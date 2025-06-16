@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Material;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\DB;
 use Normalizer;
 
 class OrderController extends Controller
@@ -48,11 +49,28 @@ class OrderController extends Controller
             'aantal' => 'required|integer|min:1',
         ]);
 
+        $material = Material::findOrFail($request->material_id);
+        $aantal = $request->aantal;
+
+        // Voorraadcontrole
+        if ($aantal > $material->voorraad) {
+            return back()->with('error', 'Niet genoeg voorraad beschikbaar.');
+        }
+
+        // Voorraad verminderen
+        $material->voorraad -= $aantal;
+        $material->save();
+
+        // Toevoegen aan session cart
         $cart = session()->get('cart', []);
-        $cart[$request->material_id] = $request->aantal;
+        if (isset($cart[$request->material_id])) {
+            $cart[$request->material_id] += $aantal;
+        } else {
+            $cart[$request->material_id] = $aantal;
+        }
         session()->put('cart', $cart);
 
-        return back()->with('status', 'Materiaal toegevoegd aan bestelling.');
+        return back()->with('success', 'Materiaal toegevoegd en voorraad bijgewerkt.');
     }
 
     public function removeFromCart(Request $request)
@@ -62,8 +80,10 @@ class OrderController extends Controller
         ]);
 
         $cart = session()->get('cart', []);
-        unset($cart[$request->material_id]);
-        session()->put('cart', $cart);
+        if (isset($cart[$request->material_id])) {
+            unset($cart[$request->material_id]);
+            session()->put('cart', $cart);
+        }
 
         return back()->with('status', 'Materiaal verwijderd uit winkelmand.');
     }
@@ -87,23 +107,32 @@ class OrderController extends Controller
             return back()->with('error', 'Je winkelmand is leeg.');
         }
 
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'status' => 'in_behandeling',
-            'leverdatum' => $request->leverdatum,
-        ]);
+        DB::beginTransaction();
 
-        foreach ($cart as $materialId => $aantal) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'material_id' => $materialId,
-                'aantal' => $aantal,
+        try {
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'status' => 'in_behandeling',
+                'leverdatum' => $request->leverdatum,
             ]);
+
+            foreach ($cart as $materialId => $aantal) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'material_id' => $materialId,
+                    'aantal' => $aantal,
+                ]);
+            }
+
+            session()->forget('cart');
+
+            DB::commit();
+
+            return redirect()->route('technieker.dashboard')->with('status', 'Bestelling succesvol geplaatst!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Er ging iets mis bij het plaatsen van je bestelling.');
         }
-
-        session()->forget('cart');
-
-        return redirect()->route('technieker.dashboard')->with('status', 'Bestelling succesvol geplaatst met leverdatum!');
     }
 
     public function orders()
@@ -133,8 +162,15 @@ class OrderController extends Controller
             return back()->with('error', 'Deze bestelling kan niet worden geannuleerd.');
         }
 
+        // ✅ Voorraad terugzetten
+        foreach ($order->items as $item) {
+            $material = $item->material;
+            $material->voorraad += $item->aantal;
+            $material->save();
+        }
+
         $order->update(['status' => 'geannuleerd']);
 
-        return back()->with('status', 'Bestelling is geannuleerd.');
+        return back()->with('status', 'Bestelling is geannuleerd en voorraad hersteld.');
     }
 }
