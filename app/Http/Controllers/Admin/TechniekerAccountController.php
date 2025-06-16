@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class TechniekerAccountController extends Controller
 {
     /**
-     * Toon een overzicht van alle techniekers.
-     */
+     * Toon een overzicht van alle techniekers.*/
     public function index()
     {
         $users = User::role('technieker')->orderByDesc('created_at')->get();
