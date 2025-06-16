@@ -22,9 +22,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Werk de profielgegevens van de gebruiker bij.
-     */
+    /*** Werk de profielgegevens van de gebruiker bij.*/
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
@@ -45,9 +43,7 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Verwijder het account van de gebruiker.
-     */
+    /*** Verwijder het account van de gebruiker.*/
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
