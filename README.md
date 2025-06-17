@@ -26,6 +26,7 @@ Een webapplicatie gebouwd voor Aquafinmet  **Laravel 10** waarmee techniekers ee
   <button type="submit">Toevoegen</button>
 </form>
 
+
 ## Rollen en toegang
 
 ### Admin
@@ -119,3 +120,50 @@ toegang :  http://localhost:8000
 4. GitHub Copilot
 
 5. ChatGPT
+About
+project aquafin
+
+Resources
+ Readme
+ Activity
+Stars
+ 0 stars
+Watchers
+ 0 watching
+Forks
+ 0 forks
+Releases
+No releases published
+Create a new release
+Packages
+No packages published
+Publish your first package
+Contributors
+5
+@kiranchaudry97
+@Damiansjj
+@Elion05
+@SorenaRafiei01
+@Yazid-El-Yazghi
+Languages
+Blade
+58.4%
+ 
+PHP
+41.4%
+ 
+Other
+0.2%
+Suggested workflows
+Based on your tech stack
+Laravel logo
+Laravel
+Test a Laravel project.
+SLSA Generic generator logo
+SLSA Generic generator
+Generate SLSA3 provenance for your existing release workflows
+Webpack logo
+Webpack
+Build a NodeJS project with npm and webpack.
+More workflows
+Footer
