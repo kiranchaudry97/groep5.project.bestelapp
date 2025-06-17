@@ -9,7 +9,7 @@ De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak 
 
 ## 📚 Documentatie
 
-De Bestelapp bevat gestructureerde RESTful routes, onderverdeeld per rol:
+De Bestelapp bevat gestructureerde routes, onderverdeeld per rol:
 
 - `/technieker/materials`: toon beschikbare materialen
 - `/technieker/cart`: beheer winkelmand
