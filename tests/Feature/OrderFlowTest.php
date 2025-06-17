@@ -2,18 +2,22 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 
 class OrderFlowTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_technieker_dashboard_is_accessible(): void
     {
-        $response = $this->get('/');
+        Role::firstOrCreate(['name' => 'technieker']);
+        $user = User::factory()->create();
+        $user->assignRole('technieker');
+
+        $response = $this->actingAs($user)->get('/technieker/dashboard');
 
         $response->assertStatus(200);
     }

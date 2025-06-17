@@ -2,19 +2,18 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_login_page_is_accessible(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
 
         $response->assertStatus(200);
+        $response->assertSee('email'); // bijvoorbeeld controle op inputveld
     }
 }

@@ -1,19 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
-class DemoTest extends TestCase
+abstract class TestCase extends BaseTestCase
 {
-    /**
-     * Test of de homepage bereikbaar is.
-     */
-    public function test_homepage_is_accessible(): void
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(302); // Bijv. redirect naar login
-    }
+    use CreatesApplication;
 }

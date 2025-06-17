@@ -11,11 +11,11 @@ class RoleAndUserSeeder extends Seeder
 {
     public function run(): void
     {
-        // ✅ Rollen aanmaken als ze nog niet bestaan
+        // ✅ Rollen aanmaken indien nog niet aanwezig
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $techRole  = Role::firstOrCreate(['name' => 'technieker']);
 
-        // ✅ Bestaande gebruikers verwijderen voor herstart (optioneel)
+        // ✅ Bestaande gebruikers verwijderen (voor clean seeding)
         User::where('email', 'tech@aquafin.be')->delete();
         User::where('email', 'admin@aquafin.be')->delete();
 

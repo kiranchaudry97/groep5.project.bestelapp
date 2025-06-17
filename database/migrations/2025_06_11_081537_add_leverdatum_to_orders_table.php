@@ -6,18 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     public function up()
-{
-    Schema::table('orders', function (Blueprint $table) {
-        $table->date('leverdatum')->nullable();
-    });
-}
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            if (!Schema::hasColumn('orders', 'leverdatum')) {
+                $table->date('leverdatum')->nullable();
+            }
+        });
+    }
 
-public function down()
-{
-    Schema::table('orders', function (Blueprint $table) {
-        $table->dropColumn('leverdatum');
-    });
-}
+    public function down()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            if (Schema::hasColumn('orders', 'leverdatum')) {
+                $table->dropColumn('leverdatum');
+            }
+        });
+    }
 };
