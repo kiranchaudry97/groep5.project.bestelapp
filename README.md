@@ -27,6 +27,65 @@ blade
 </form>
 
 
+## Screenshots
+
+### Logpagina
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/log-pagina.jpg)
+
+### Dasboard gebruikers | Admin
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-dashboard.jpg)
+
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-dashboard.jpg)
+
+### Gebruikers  | Materiaal
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-materiaal-overzicht.jpg)
+
+
+### Gebruikers  | Winkelmand
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-winkelmand.jpg)
+
+
+### Gebruikers  | Bestellingen
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-bestellingen.jpg)
+
+### Gebruikers  | Bestellingen overrzicht inhoud
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-bestellingen-bestelnummer.jpg)
+
+### Gebruikers  | Profiel
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-profiel.jpg)
+
+
+### Admin  | Materiaal Overzicht
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-beheer.jpg)
+
+
+### Admin  | Bestellingen overzicht van gebruikers
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/ingekomende-bestellingen-admin.jpg)
+
+### Admin  | Material bewerken
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-bewerken.jpg)
+
+### Admin  | Materiaalbeheer/toevoegen
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-toevoegen.jpg)
+
+
+### Admin  | Account aanmaken
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-account-aanmaken.jpg)
+
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/nieuwe-account-aanmaken.jpg)
+### Flowchart
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_flowchart.jpeg)
+
+### Erd Relaties
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/28e6ceb7f053b10d64ebf8f51a82efa689131c3f/foto/diagram.jpg)
+
+### Moodboard
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_moodboard.jpeg)
+
+### Prototype
+![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_prototype.jpg)
+
+
 ## Rollen en toegang
 
 ### Admin
