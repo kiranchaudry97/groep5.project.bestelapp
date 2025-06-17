@@ -1,61 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🛒 BestelApp – Materiaalbeheer voor Techniekers (Aquafin)
 
-## About Laravel
+Een Laravel-webapplicatie waarmee techniekers van Aquafin materiaal kunnen raadplegen, bestellen en opvolgen. Admins beheren het aanbod en gebruikers. Alles is beveiligd, getest en gestructureerd met duidelijke documentatie en design.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+🔗 **Repository**: [https://github.com/kiranchaudry97/groep5.project.bestelapp](https://github.com/kiranchaudry97/groep5.project.bestelapp)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📁 Mappenstructuur
 
-## Learning Laravel
+```text
+groep5.project.bestelapp/
+├── app/                  # Controllers, Models
+├── resources/            # Blade views, CSS, JS
+├── routes/               # web.php, api.php
+├── database/             # Migraties, seeders
+├── public/               # Publieke toegang, index.php
+├── config/               # Laravel-configuratie
+├── tests/                # PHPUnit tests
+├── package.json          # Frontend dependencies
+├── vite.config.js        # Vite configuratie
+└── .env                  # Omgevingsinstellingen
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📦 `package.json` uitleg
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `vite`: compileert assets
+- `tailwindcss`: zorgt voor styling
+- `laravel-vite-plugin`: koppelt dit aan Laravel views
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📌 Projectdoel
 
-### Premium Partners
+Techniekers van Aquafin moeten dagelijks kunnen rekenen op materiaal. Deze app laat hen bestellingen plaatsen met leverdatum. Admins beheren materialen, voorraden en rollen.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## ✅ Functionaliteiten
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Gebruikersregistratie en login
+- Materiaal raadplegen en bestellen
+- Leverdatum instellen
+- Rollen en rechten beheren
+- Admin- en gebruikersdashboards
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🧭 Flowchart van de applicatie
 
-## Security Vulnerabilities
+📷 *Functioneel overzicht van de gebruikersstroom:*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Flowchart](bestel_app_flowchart.jpeg)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🎨 Moodboard & Designstijl
+
+📷 *UI-kleuren, lettertypes, knoppen, pictogrammen*
+
+![Moodboard](bestel_app_moodboard.jpeg)
+
+---
+
+## 🖼️ Screenshots van de applicatie
+
+### 👤 Admin Login & Dashboard
+![Admin dashboard](admin-dashboard.jpg)
+
+### 🛠️ Materiaalbeheer
+![Materiaalbeheer](admin-materiaal-beheer.jpg)
+
+### ✏️ Materiaal Bewerken
+![Materiaal Bewerken](admin-materiaal-bewerken.jpg)
+
+### ➕ Materiaal Toevoegen
+![Materiaal Toevoegen](admin-materiaal-toevoegen.jpg)
+
+### 👷 Technieker Dashboard
+![Gebruiker dashboard](gebruiker-dashboard.jpg)
+
+### 🛒 Besteloverzicht (technieker)
+![Bestelling Detail](gebruiker-bestellingen-bestelnummer.jpg)
+
+### 📦 Materiaal Selectie & Filtering
+![Materiaal overzicht](gebruiker-materiaal-overzicht.jpg)
+
+### 👤 Profielpagina
+![Profielpagina](gebruiker-profiel.jpg)
+
+---
+
+## 🧪 Prototypeschermen
+
+📷 *Volledig klikbare mockups*
+
+![Prototype overzicht](bestel_app_prototype.jpg)
+
+---
+
+## ⚙️ Installatie
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+### Frontend (Vite)
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 🗃️ Database & ERD
+
+📷 *ERD-datamodel: gebruikers, rollen, materialen, bestellingen*
+
+![ERD](2af6824c-be7f-4496-a6db-b6335eb6ae43.jpg)
+
+Relaties:
+- `gebruikers` ↔ `bestellingen`
+- `bestellingen` ↔ `bestelregels` ↔ `materialen`
+- `gebruikers` ↔ `rollen` ↔ `rechten`
+
+---
+
+## 🧪 Testen
+
+```bash
+php artisan test
+```
+
+- Bestelling plaatsen
+- Validatiecontrole
+- Rechtenbeheer
+
+---
+
+## 🔒 Beveiliging
+
+- CSRF-beveiliging op formulieren
+- Validatie via Form Requests
+- Rollen- en rechtenbeheer via middleware
+- Bcrypt hashing voor wachtwoorden
+
+---
+
+## 🧠 Codevoorbeeld – Bestelling plaatsen
+
+```php
+public function store(Request $request) {
+  $data = $request->validate([
+    'leverdatum' => 'required|date',
+    'items' => 'required|array'
+  ]);
+  $bestelling = Bestelling::create([
+    'gebruiker_id' => auth()->id(),
+    'leverdatum' => $data['leverdatum'],
+  ]);
+  foreach ($data['items'] as $item) {
+    Bestelregel::create([
+      'bestelling_id' => $bestelling->id,
+      'materiaal_id' => $item['materiaal_id'],
+      'hoeveelheid' => $item['aantal'],
+      'prijs' => $item['prijs']
+    ]);
+  }
+  return redirect()->route('bestellingen.index');
+}
+```
+
+---
+
+## 👥 Team
+
+Graduaat Programmeren : Kiran Chaud-ry , Elion Rexhepi, Ellis Damian Viracocha, Yazid-El-Yazghi
+
+---
+
+## 📅 Roadmap / Trello
+
+🔗 Voeg hier je Trello-link toe  
+📷 Voeg een screenshot toe van het sprintbord
+
+---
+
+## 📄 Licentie
+
+MIT – Vrij te gebruiken, aanpassen en delen met bronvermelding.
+
+
+MIT – vrij gebruik met bronvermelding.
+
+---
+
