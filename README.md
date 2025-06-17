@@ -1,186 +1,175 @@
-# 📦 Bestelapp - Materiaalbeheer voor Techniekers
 
-Een webapplicatie gebouwd voor Aquafinmet  **Laravel 10** waarmee techniekers eenvoudig materialen kunnen bestellen, admins voorraad kunnen beheren en beide rollen elk hun eigen dashboard hebben.
+# 📦 Bestelapp – Laravel gebaseerde materiaalbeheer en bestelapplicatie
+
+**Bestelapp** is een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
+
+De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak van authenticatie, autorisatie, validatie en voorraadbeheer.
 
 ---
 
-## Functionaliteiten
+## 📚 Documentatie
 
-### Materiaal bestellen (technieker)
+De Bestelapp bevat gestructureerde RESTful routes, onderverdeeld per rol:
 
-1. Ga naar het materiaaloverzicht: `/technieker/materials`
-2. Filter per categorie of zoek op naam
-3. Kies een hoeveelheid en voeg toe aan winkelmand
-4. Voorraad wordt automatisch gecontroleerd
-5. Bestelling wordt bijgehouden in een sessie
-6. Ga naar winkelmand → kies leverdatum → bevestig bestelling
-7. Voorraad wordt automatisch verminderd
-
-#### Voorbeeld formulier in Blade:
-
-blade
-<form method="POST" action="{{ route('technieker.cart.add') }}">
-  @csrf
-  <input type="hidden" name="material_id" value="{{ $material->id }}">
-  <input type="number" name="aantal" max="{{ $material->voorraad }}" required>
-  <button type="submit">Toevoegen</button>
-</form>
-
-
-## Screenshots
-
-### Logpagina
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/log-pagina.jpg)
-
-### Dasboard gebruikers | Admin
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-dashboard.jpg)
-
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-dashboard.jpg)
-
-### Gebruikers  | Materiaal
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-materiaal-overzicht.jpg)
-
-
-### Gebruikers  | Winkelmand
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-winkelmand.jpg)
-
-
-### Gebruikers  | Bestellingen
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-bestellingen.jpg)
-
-### Gebruikers  | Bestellingen overrzicht inhoud
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-bestellingen-bestelnummer.jpg)
-
-### Gebruikers  | Profiel
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/gebruiker-profiel.jpg)
-
-
-### Admin  | Materiaal Overzicht
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-beheer.jpg)
-
-
-### Admin  | Bestellingen overzicht van gebruikers
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/ingekomende-bestellingen-admin.jpg)
-
-### Admin  | Material bewerken
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-bewerken.jpg)
-
-### Admin  | Materiaalbeheer/toevoegen
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-materiaal-toevoegen.jpg)
-
-
-### Admin  | Account aanmaken
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/admin-account-aanmaken.jpg)
-
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/nieuwe-account-aanmaken.jpg)
-### Flowchart
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_flowchart.jpeg)
-
-### Erd Relaties
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/28e6ceb7f053b10d64ebf8f51a82efa689131c3f/foto/diagram.jpg)
-
-### Moodboard
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_moodboard.jpeg)
-
-### Prototype
-![image](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/ac41765fd05e6844ef0ac651e16ce04a8ef3c6d0/foto/bestel_app_prototype.jpg)
-
-
-## Rollen en toegang
-
-### Admin
-1. Materialen aanmaken, bewerken en verwijderen
-2. Techniekeraccounts beheren.
-3. Bestellingen opvolgen en statussen aanpassen
-
-### Techniekers
-1. Materialen bekijken en filteren
-2. Toevoegen aan winkelmand
-3. Bestellingen indienen & annuleren
-4. Bestelgeschiedenis bekijken
-
-#### Technische Stack:
-1. Laravel 10 
-2. Laravel Breeze (voor authenticatie)
-3. Spatie Laravel-permission (voor rolbeheer)
-4. TailwindCSS (frontend)
-5. Blade templates
-6. PHP 8.2+
-7. MySQL of SQLite
+- `/technieker/materials`: toon beschikbare materialen
+- `/technieker/cart`: beheer winkelmand
+- `/technieker/orders`: overzicht van geplaatste bestellingen
+- `/admin/materials`: beheer van materialen
+- `/admin/bestellingen`: opvolging van alle bestellingen
 
 
 
-## Installatie
+---
 
-1. Clone de repository
+## ⚙️ Efficiënt en robuust
+
+De applicatie ondersteunt:
+
+- **Sessiegebaseerd winkelmandbeheer**
+- **Directe voorraadupdates bij bestelling**
+- **Rollback van voorraad bij annulatie**
+- **Rollenbeheer met [Spatie Laravel-permission](https://spatie.be/docs/laravel-permission)**
+- **Responsieve UI via TailwindCSS**
+
+Bestelapp verwerkt bestellingen met robuuste foutafhandeling, validatie en herbruikbare Blade-componenten.
+
+---
+
+## 💡 Gebruik
+
+### Winkelmand toevoegen
+
+```php
+$request->validate([
+  'material_id' => 'required|exists:materials,id',
+  'aantal' => 'required|integer|min:1',
+]);
+
+$material = Material::findOrFail($request->material_id);
+
+if ($aantal > $material->voorraad) {
+  return back()->with('error', 'Niet genoeg voorraad beschikbaar.');
+}
+
+$material->voorraad -= $aantal;
+$material->save();
+```
+
+### Bestelling opslaan
+
+```php
+$order = Order::create([
+  'user_id' => auth()->id(),
+  'leverdatum' => $request->leverdatum,
+  'status' => 'in_behandeling',
+]);
+
+foreach ($cart as $materialId => $aantal) {
+  OrderItem::create([
+    'order_id' => $order->id,
+    'material_id' => $materialId,
+    'aantal' => $aantal,
+  ]);
+}
+```
+
+---
+
+## 🎯 Features
+
+| Functionaliteit            | Ondersteund |
+|----------------------------|-------------|
+| Materialen bestellen       | ✅          |
+| Winkelmand beheren         | ✅          |
+| Bestellingen inzien        | ✅          |
+| Rolgebaseerde toegang      | ✅          |
+| Admin dashboard            | ✅          |
+| Realtime voorraadcontrole  | ✅          |
+
+---
+
+## 📦 Installatie
+
+```bash
 git clone https://github.com/kiranchaudry97/groep5.project.bestelapp.git
 cd groep5.project.bestelapp
-
-2.  Installeer dependencies
 composer install
-npm install && npm run build
 cp .env.example .env
 php artisan key:generate
-
-3.  Configureer .env
-DB_CONNECTION=mysql
-DB_DATABASE=bestelapp
-DB_USERNAME=root
-DB_PASSWORD=
-
-4. Database migreren + seed
 php artisan migrate --seed
+php artisan serve
+```
 
-5. Start de server
-php artisan 
-serve
+Toegang: [http://localhost:8000](http://localhost:8000)
 
-toegang :  http://localhost:8000
+---
 
-## Testgebruikers
-   Rol	        E-mail	Wachtwoord
-1. Admin	admin@example.com	password
-2. Technieker	technieker@example.com	password
+## 🔐 Testaccounts
 
-## Belangrijke Bestanden & Structuur
-| Bestand/Map                       | Omschrijving                            |
-| --------------------------------- | --------------------------------------- |
-| `routes/web.php`                  | Webroutes met aparte groepen per rol    |
-| `app/Http/Controllers/Admin`      | Admin controllers                       |
-| `app/Http/Controllers/Technieker` | Technieker controllers                  |
-| `database/seeders`                | Seeder voor voorbeelddata               |
-| `resources/views/technieker`      | Views voor technieker (bestellen, cart) |
-| `resources/views/admin`           | Admin dashboard en beheer               |
+| Rol        | Email                 | Wachtwoord |
+|------------|------------------------|------------|
+| Admin      | admin@example.com      | password   |
+| Technieker | technieker@example.com | password   |
 
+---
 
+## 📂 Structuur
 
-## Screenshots
+- `routes/web.php`: gesegmenteerde routing
+- `app/Models`: Eloquent modellen zoals `Material`, `Order`
+- `app/Http/Controllers/Admin`: Adminlogica
+- `app/Http/Controllers/Technieker`: Techniekerlogica
+- `resources/views/`: UI views in Blade
 
-## Team & Projectinformatie
+---
 
-| Info         | Inhoud                                      |
-| ------------ | ------------------------------------------- |
-| Team         | Groep 5                                     |
-| Leden        | Kiran Chaudry, Sorena, Yazid, Damian, Elion |
-| School       | Erasmushogeschool Brussel                   |
-| Academiejaar | 2024–2025                                   |
-| Project      | Programming Project                         |
+## 🔒 Beveiliging
 
+- Wachtwoord-hashing
+- CSRF-bescherming
+- Toegangscontrole via middleware en policies
+- Validatie van invoer op controller-niveau
 
+---
 
-## Team & Projectinformatie
+## 🧪 Testen
 
-1. Laravel Documentation
+Testbare onderdelen zoals:
+- Voorraadverificatie
+- Bestelbevestiging
+- Rolvalidatie
 
-2. Spatie Laravel-Permission
+```bash
+php artisan test
+```
 
-3. TailwindCSS
+---
 
-4. GitHub Copilot
+## 📦 Releases
 
-5. ChatGPT
-About
-project aquafin
+Gebruik GitHub Tags voor versiebeheer:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+---
+
+## 🧠 Ontwikkelingsteam
+
+- **Projectnaam**: Bestelapp
+- **Team**: Groep 5
+- **Teamleden**: Kiran Chaudry, Sorena, Yazid, Damian, Elion
+- **Academiejaar**: 2024–2025
+- **School**: Erasmushogeschool Brussel
+
+---
+
+## 📜 Licentie
+
+MIT License – open source en vrij aanpasbaar binnen educatieve context.
+
 
 Resources
  Readme
