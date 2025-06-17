@@ -108,8 +108,8 @@ Toegang: [http://localhost:8000](http://localhost:8000)
 
 | Rol        | Email                 | Wachtwoord |
 |------------|------------------------|------------|
-| Admin      | admin@example.com      | password   |
-| Technieker | technieker@example.com | password   |
+| Admin      | admin@aquafin.be      | admin123   |
+| Technieker | tech@aquafin.be | tech123   |
 
 ---
 
