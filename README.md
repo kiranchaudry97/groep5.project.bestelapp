@@ -1,7 +1,7 @@
 
 # 📦 Bestelapp – Laravel gebaseerde materiaalbeheer en bestelapplicatie
 
-**Bestelapp** is een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
+**Bestelapp** Voor bedrijf Aquafin aangemaakt op een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
 
 De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak van authenticatie, autorisatie, validatie en voorraadbeheer.
 
