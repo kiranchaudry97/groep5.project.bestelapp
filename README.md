@@ -18,7 +18,7 @@ Een webapplicatie gebouwd voor Aquafinmet  **Laravel 10** waarmee techniekers ee
 
 #### Voorbeeld formulier in Blade:
 
-```blade
+blade
 <form method="POST" action="{{ route('technieker.cart.add') }}">
   @csrf
   <input type="hidden" name="material_id" value="{{ $material->id }}">
