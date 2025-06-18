@@ -3,17 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\OrderItem;
+use App\Models\Category;
 
 class Material extends Model
 {
+    use HasFactory;
+
+    /**
+     * Massaal toewijsbare attributen.
+     */
     protected $fillable = [
         'naam',
-        'categorie',
         'voorraad',
+        'beschrijving',
+        'category_id', // relationele koppeling
     ];
 
     /**
-     * Relatie met order items.
+     * Relatie: dit materiaal hoort bij één categorie.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    /**
+     * Relatie: dit materiaal komt voor in meerdere bestelregels.
      */
     public function orderItems()
     {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderOverviewController;
 use App\Http\Controllers\Admin\TechniekerAccountController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Technieker\OrderController;
 
 Route::get('/', function () {
@@ -33,6 +34,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('techniekers/create', [TechniekerAccountController::class, 'create'])->name('techniekers.create');
     Route::post('techniekers', [TechniekerAccountController::class, 'store'])->name('techniekers.store');
     Route::get('users', [TechniekerAccountController::class, 'index'])->name('users.index');
+    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
 });
 
 Route::middleware(['auth'])->prefix('technieker')->name('technieker.')->group(function () {

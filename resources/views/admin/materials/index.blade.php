@@ -7,11 +7,9 @@
 </head>
 <body class="bg-white min-h-screen text-gray-800 font-sans">
 
-  {{-- Navigatie --}}
   @include('partials.admin-nav')
 
   <div class="max-w-6xl mx-auto px-6 py-8">
-
     <h1 class="text-2xl font-bold text-blue-600 mb-6 text-center">
       ➕ Beheer Materiaal
     </h1>
@@ -36,11 +34,16 @@
       </form>
     </div>
 
-    {{-- ➕ Nieuw materiaal --}}
-    <div class="text-center mb-6">
+    {{-- ➕ Actieknoppen --}}
+    <div class="text-center mb-6 flex flex-col sm:flex-row justify-center gap-4">
       <a href="{{ route('admin.materials.create') }}"
          class="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600 text-sm font-semibold shadow">
         ➕ Nieuw materiaal
+      </a>
+
+      <a href="{{ route('admin.categories.create') }}"
+         class="bg-green-500 text-white px-5 py-2 rounded hover:bg-green-600 text-sm font-semibold shadow">
+        ➕ Nieuwe categorie
       </a>
     </div>
 
@@ -49,9 +52,9 @@
       <table class="w-full bg-white border rounded shadow-sm text-sm text-left">
         <thead class="bg-gray-100">
           <tr>
-            <th class="p-3"> Naam</th>
-            <th class="p-3"> Categorie</th>
-            <th class="p-3"> Voorraad</th>
+            <th class="p-3">Naam</th>
+            <th class="p-3">Categorie</th>
+            <th class="p-3">Voorraad</th>
             <th class="p-3">Acties</th>
           </tr>
         </thead>
@@ -84,7 +87,6 @@
     </div>
   </div>
 
-  {{-- Footer --}}
   @include('partials.footer')
 </body>
 </html>

@@ -1,7 +1,11 @@
 
 # 📦 Bestelapp – Laravel gebaseerde materiaalbeheer en bestelapplicatie
 
+<<<<<<< HEAD
 **Bestelapp** is een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
+=======
+**Bestelapp** Voor bedrijf Aquafin aangemaakt op een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
+>>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
 
 De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak van authenticatie, autorisatie, validatie en voorraadbeheer.
 
@@ -9,7 +13,11 @@ De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak 
 
 ## 📚 Documentatie
 
+<<<<<<< HEAD
 De Bestelapp bevat gestructureerde RESTful routes, onderverdeeld per rol:
+=======
+De Bestelapp bevat gestructureerde routes, onderverdeeld per rol:
+>>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
 
 - `/technieker/materials`: toon beschikbare materialen
 - `/technieker/cart`: beheer winkelmand
@@ -146,8 +154,35 @@ php artisan test
 ---
 
 ## 📦 Releases
+<<<<<<< HEAD
 
 Gebruik GitHub Tags voor versiebeheer:
+=======
+
+Gebruik GitHub Tags voor versiebeheer:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+---
+
+## 🧠 Ontwikkelingsteam
+
+- **Projectnaam**: Bestelapp
+- **Team**: Groep 5
+- **Teamleden**: Kiran Chaudry, Sorena, Yazid, Damian, Elion
+- **Academiejaar**: 2024–2025
+- **School**: Erasmushogeschool Brussel
+
+---
+
+## 📜 Licentie
+
+MIT License – open source en vrij aanpasbaar binnen educatieve context.
+
+>>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
 
 ```bash
 git tag v1.0.0
