@@ -5,9 +5,10 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-// Toegevoegde commando’s
+// ✅ Toegevoegde commando’s
 use App\Console\Commands\CleanMaterialCategories;
 use App\Console\Commands\CleanCategoryMapping;
+use App\Console\Commands\MigreerCategorieen;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,8 +18,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        MigreerCategorieen::class,
         CleanMaterialCategories::class,
-        CleanCategoryMapping::class, // ✅ Voeg dit toe voor mapping cleanup
+        CleanCategoryMapping::class,
     ];
 
     /**
@@ -35,7 +37,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands'); // ✅ correcte directory
+        $this->load(_DIR_.'/Commands');
         require base_path('routes/console.php');
     }
 }

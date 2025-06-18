@@ -15,6 +15,12 @@
       ➕ Beheer Materiaal
     </h1>
 
+    {{-- 🔍 Categorieën ophalen --}}
+    @php
+      use App\Models\Category;
+      $allCategories = \App\Models\Category::orderBy('naam')->pluck('naam');
+    @endphp
+
     {{-- 🔍 Filter --}}
     <div class="flex justify-center mb-6">
       <form method="GET" class="flex flex-wrap gap-2 items-center bg-blue-50 p-4 rounded shadow-md border max-w-2xl w-full">
@@ -35,11 +41,16 @@
       </form>
     </div>
 
-    {{-- ➕ Nieuw materiaal --}}
-    <div class="text-center mb-6">
+    {{-- ➕ Actieknoppen --}}
+    <div class="text-center mb-6 flex flex-col sm:flex-row justify-center gap-4">
       <a href="{{ route('admin.materials.create') }}"
          class="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600 text-sm font-semibold shadow">
         ➕ Nieuw materiaal
+      </a>
+
+      <a href="{{ route('admin.materials.create') }}"
+         class="bg-green-500 text-white px-5 py-2 rounded hover:bg-green-600 text-sm font-semibold shadow">
+        ➕ Nieuwe categorie
       </a>
     </div>
 
@@ -81,6 +92,7 @@
         </tbody>
       </table>
     </div>
+
   </div>
 
   @include('partials.footer')

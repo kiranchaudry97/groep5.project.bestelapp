@@ -12,7 +12,7 @@
 
   {{-- ✅ Inhoud --}}
   <main class="flex-grow">
-    <div class="max-w-xl mx-auto bg-white rounded shadow p-6 mt-8 mb-10">
+    <div class="max-w-xl mx-auto bg-white rounded shadow p-6 mt-8 mb-6">
       <h1 class="text-xl font-bold mb-6 text-center">➕📦 Nieuw materiaal toevoegen</h1>
 
       @if(session('status'))
@@ -21,37 +21,76 @@
         </div>
       @endif
 
+      @if ($errors->any())
+        <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded text-sm">
+          <ul class="list-disc pl-5 space-y-1">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      {{-- 📦 Materiaal formulier --}}
       <form action="{{ route('admin.materials.store') }}" method="POST" class="space-y-4">
         @csrf
 
         <div>
           <label class="block mb-1 text-sm font-medium">Naam</label>
-          <input type="text" name="naam" required class="w-full border rounded px-3 py-2 text-sm border-blue-400">
+          <input type="text" name="naam" value="{{ old('naam') }}" required
+                 class="w-full border rounded px-3 py-2 text-sm border-blue-400">
         </div>
 
         <div>
           <label class="block mb-1 text-sm font-medium">Categorie</label>
-          <select name="categorie" required class="w-full border rounded px-3 py-2 text-sm border-blue-400">
+          <select name="categorie" required
+                  class="w-full border rounded px-3 py-2 text-sm border-blue-400">
             <option value="">-- Kies een categorie --</option>
             @foreach ($allCategories as $cat)
-              <option value="{{ $cat }}">{{ $cat }}</option>
+              <option value="{{ $cat }}" @selected(old('categorie') == $cat)>{{ $cat }}</option>
             @endforeach
           </select>
         </div>
 
         <div>
           <label class="block mb-1 text-sm font-medium">Voorraad</label>
-          <input type="number" name="voorraad" min="0" required class="w-full border rounded px-3 py-2 text-sm border-blue-400">
+          <input type="number" name="voorraad" min="0" value="{{ old('voorraad') }}" required
+                 class="w-full border rounded px-3 py-2 text-sm border-blue-400">
         </div>
 
         <div>
           <label class="block mb-1 text-sm font-medium">Beschrijving</label>
-          <textarea name="beschrijving" rows="3" class="w-full border rounded px-3 py-2 text-sm border-blue-400"></textarea>
+          <textarea name="beschrijving" rows="3"
+                    class="w-full border rounded px-3 py-2 text-sm border-blue-400">{{ old('beschrijving') }}</textarea>
         </div>
 
         <div class="text-right mt-6">
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">
-            Opslaan
+          <button type="submit"
+                  class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">
+            ➕ Opslaan
+          </button>
+        </div>
+      </form>
+    </div>
+
+    {{-- 🔻 NIEUWE CATEGORIE TOEVOEGEN SECTIE --}}
+    <div class="max-w-xl mx-auto bg-white rounded shadow border border-green-300 p-6 mb-10">
+      <h2 class="text-lg font-semibold text-green-700 mb-4 text-center">➕ Nieuwe categorie toevoegen</h2>
+
+      <form action="{{ route('admin.categories.store') }}" method="POST" class="space-y-4">
+        @csrf
+
+        <div>
+          <label class="block mb-1 text-sm font-medium">Categorienaam</label>
+          <input type="text" name="naam" required
+                 class="w-full border rounded px-3 py-2 text-sm border-green-400"
+                 placeholder="Bijv. Elektrisch gereedschap">
+        </div>
+
+        <div class="text-right">
+          <button type="submit"
+                  class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 text-sm">
+            ➕ Toevoegen
           </button>
         </div>
       </form>

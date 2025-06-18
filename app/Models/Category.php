@@ -10,23 +10,14 @@ class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * Tabelnaam (optioneel, indien anders dan 'categories')
-     */
-    // protected $table = 'categories';
+    // protected $table = 'categories'; // ← niet nodig tenzij je een andere tabelnaam gebruikt
 
-    /**
-     * Mass assignable attributen.
-     */
     protected $fillable = [
-        'naam',
+        'naam', // ← zorgt ervoor dat je via create([]) veilig kan opslaan
     ];
 
-    /**
-     * Relatie: een categorie heeft meerdere materialen.
-     */
     public function materials()
     {
-        return $this->hasMany(Material::class, 'category_id');
+        return $this->hasMany(Material::class, 'category_id'); // ← correcte relatie
     }
 }

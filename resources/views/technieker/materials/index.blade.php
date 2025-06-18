@@ -7,7 +7,6 @@
 </head>
 <body class="bg-white min-h-screen text-gray-800 font-sans">
 
-  {{-- Navigatie --}}
   @include('partials.nav')
 
   <div class="max-w-7xl mx-auto p-6">
@@ -15,21 +14,34 @@
 
     {{-- 📸 Categorie-tegels --}}
     @php
-      use Illuminate\Support\Str;
       $categorieAfbeeldingen = [
         '👷‍♂ PBM' => 'pbm.jpg',
         '🧰 Bevestigingsmateriaal' => 'bevestiging.jpg',
         '🔧 Gereedschap' => 'gereedschap.jpg',
         '⚙ Technische onderhoudsmaterialen' => 'technisch.jpeg',
         '🛠 Riolering tools' => 'riolering.jpg',
-        '📦 Diversen' => 'diversen.jpg',
+        '📦 Diversen / Verbruiksgoederen' => 'diversen.jpg',
       ];
+
+      $categorieLabels = [
+        '👷‍♂ PBM' => ['emoji' => '👷‍♂', 'label' => 'PBM'],
+        '🧰 Bevestigingsmateriaal' => ['emoji' => '🧰', 'label' => 'Bevestigingsmateriaal'],
+        '🔧 Gereedschap' => ['emoji' => '🔧', 'label' => 'Gereedschap'],
+        '⚙ Technische onderhoudsmaterialen' => ['emoji' => '⚙', 'label' => 'Technisch onderhoud'],
+        '🛠 Riolering tools' => ['emoji' => '🛠', 'label' => 'Riolering tools'],
+        '📦 Diversen / Verbruiksgoederen' => ['emoji' => '📦', 'label' => 'Verbruiksgoederen'],
+      ];
+
       $uniekeCats = collect($allCategories)->unique()->sort()->values();
+      $dropdownCats = array_keys($categorieLabels); // 🔍 Filter dropdown op gestandaardiseerde emoji-categorieën
     @endphp
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
       @foreach ($uniekeCats as $cat)
-        @php $img = $categorieAfbeeldingen[$cat] ?? null; @endphp
+        @php
+          $img = $categorieAfbeeldingen[$cat] ?? null;
+          $label = $categorieLabels[$cat] ?? ['emoji' => '', 'label' => $cat];
+        @endphp
         @if ($img)
           <a href="{{ route('technieker.materials.index', ['categorie' => $cat]) }}"
              class="relative block rounded-lg border-4 border-blue-300 overflow-hidden shadow hover:shadow-lg transition duration-200 group bg-white">
@@ -39,7 +51,7 @@
             <div class="absolute inset-0 bg-black bg-opacity-30"></div>
             <div class="absolute inset-0 flex items-center justify-center p-2 text-center">
               <span class="text-white font-bold text-sm sm:text-base drop-shadow leading-tight">
-                {{ Str::before($cat, ' ') }}<br>{{ Str::after($cat, ' ') }}
+                {{ $label['emoji'] }}<br>{{ $label['label'] }}
               </span>
             </div>
           </a>
@@ -59,7 +71,7 @@
       <select name="categorie"
               class="rounded-full border border-blue-300 px-4 py-2 text-sm focus:ring-blue-400 focus:border-blue-400 w-full sm:w-48">
         <option value="">Categorie</option>
-        @foreach ($uniekeCats as $cat)
+        @foreach ($dropdownCats as $cat)
           <option value="{{ $cat }}" @selected(request('categorie') == $cat)>{{ $cat }}</option>
         @endforeach
       </select>
@@ -106,7 +118,7 @@
     </div>
   </div>
 
-  {{-- ✅ Footer --}}
   @include('partials.footer')
+
 </body>
 </html>

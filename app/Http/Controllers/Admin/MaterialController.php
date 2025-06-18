@@ -5,21 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Material;
+use App\Models\Category;
 use Normalizer;
 
 class MaterialController extends Controller
 {
     /**
-     * Haal alle unieke categorieën op uit de materials-tabel (genormaliseerd).
+     * Haal alle unieke categorieën op uit de Category-tabel.
      */
     protected function getUniekeCategorieën()
     {
-        return Material::pluck('categorie')
-            ->filter()
-            ->map(fn($cat) => normalizer_normalize(trim($cat), \Normalizer::FORM_C))
-            ->unique()
-            ->sort()
-            ->values();
+        return Category::orderBy('naam')->pluck('naam');
     }
 
     /**
@@ -55,12 +51,26 @@ class MaterialController extends Controller
     {
         $request->validate([
             'naam' => 'required|string|max:255',
-            'categorie' => 'required|string|max:255',
+            'categorie_bestaand' => 'nullable|string|max:255',
+            'categorie_nieuw' => 'nullable|string|max:255',
             'voorraad' => 'required|integer|min:0',
             'beschrijving' => 'nullable|string|max:1000',
         ]);
 
-        Material::create($request->only(['naam', 'categorie', 'voorraad', 'beschrijving']));
+        // 🔁 Gebruik nieuwe of bestaande categorie
+        $categorie = $request->categorie_nieuw ?: $request->categorie_bestaand;
+
+        // Indien nieuwe categorie is ingevuld, voeg toe aan Category-tabel
+        if ($request->filled('categorie_nieuw')) {
+            Category::firstOrCreate(['naam' => $categorie]);
+        }
+
+        Material::create([
+            'naam' => $request->naam,
+            'categorie' => $categorie,
+            'voorraad' => $request->voorraad,
+            'beschrijving' => $request->beschrijving,
+        ]);
 
         return redirect()->route('admin.materials.index')->with('status', 'Materiaal toegevoegd.');
     }
@@ -105,7 +115,6 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         $material->delete();
-
         return redirect()->route('admin.materials.index')->with('status', 'Materiaal verwijderd.');
     }
 }
