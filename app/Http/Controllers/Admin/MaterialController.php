@@ -10,7 +10,20 @@ use Normalizer;
 class MaterialController extends Controller
 {
     /**
-     * Toon overzicht van alle materialen (optioneel gefilterd op categorie).
+     * Haal alle unieke categorieën op uit de materials-tabel (genormaliseerd).
+     */
+    protected function getUniekeCategorieën()
+    {
+        return Material::pluck('categorie')
+            ->filter()
+            ->map(fn($cat) => normalizer_normalize(trim($cat), \Normalizer::FORM_C))
+            ->unique()
+            ->sort()
+            ->values();
+    }
+
+    /**
+     * Toon overzicht van alle materialen, met optionele filtering op categorie.
      */
     public function index(Request $request)
     {
@@ -21,12 +34,7 @@ class MaterialController extends Controller
         }
 
         $materials = $query->orderBy('naam')->get();
-
-        $allCategories = Material::pluck('categorie')
-            ->map(fn($cat) => normalizer_normalize(trim(preg_replace('/\s+/', ' ', $cat)), \Normalizer::FORM_C))
-            ->unique()
-            ->sort()
-            ->values();
+        $allCategories = $this->getUniekeCategorieën();
 
         return view('admin.materials.index', compact('materials', 'allCategories'));
     }
@@ -36,12 +44,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        $allCategories = Material::pluck('categorie')
-            ->map(fn($cat) => normalizer_normalize(trim(preg_replace('/\s+/', ' ', $cat)), \Normalizer::FORM_C))
-            ->unique()
-            ->sort()
-            ->values();
-
+        $allCategories = $this->getUniekeCategorieën();
         return view('admin.materials.create', compact('allCategories'));
     }
 
@@ -63,7 +66,7 @@ class MaterialController extends Controller
     }
 
     /**
-     * Toon een specifieke materiaalrecord.
+     * Toon details van een materiaal.
      */
     public function show(Material $material)
     {
@@ -71,21 +74,16 @@ class MaterialController extends Controller
     }
 
     /**
-     * Toon het formulier om materiaal te bewerken.
+     * Toon formulier om een materiaal te bewerken.
      */
     public function edit(Material $material)
     {
-        $allCategories = Material::pluck('categorie')
-            ->map(fn($cat) => normalizer_normalize(trim(preg_replace('/\s+/', ' ', $cat)), \Normalizer::FORM_C))
-            ->unique()
-            ->sort()
-            ->values();
-
+        $allCategories = $this->getUniekeCategorieën();
         return view('admin.materials.edit', compact('material', 'allCategories'));
     }
 
     /**
-     * Verwerk het bijwerken van een bestaand materiaal.
+     * Verwerk het bijwerken van een materiaal.
      */
     public function update(Request $request, Material $material)
     {

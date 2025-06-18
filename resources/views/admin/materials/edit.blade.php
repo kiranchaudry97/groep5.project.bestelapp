@@ -7,7 +7,6 @@
 </head>
 <body class="bg-white min-h-screen text-gray-800 font-sans">
 
-  {{-- Navigatie --}}
   @include('partials.admin-nav')
 
   <div class="flex flex-col items-center justify-center min-h-[80vh] px-4">
@@ -18,14 +17,12 @@
         @csrf
         @method('PUT')
 
-        {{-- Naam --}}
         <div>
           <label class="block text-sm font-medium mb-1">Naam</label>
           <input type="text" name="naam" value="{{ old('naam', $material->naam) }}" required
                  class="w-full border border-blue-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300">
         </div>
 
-        {{-- Categorie --}}
         <div>
           <label class="block text-sm font-medium mb-1">Categorie</label>
           <select name="categorie" required
@@ -39,21 +36,18 @@
           </select>
         </div>
 
-        {{-- Voorraad --}}
         <div>
           <label class="block text-sm font-medium mb-1">Aantal op voorraad</label>
           <input type="number" name="voorraad" min="0" value="{{ old('voorraad', $material->voorraad) }}" required
                  class="w-full border border-blue-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300">
         </div>
 
-        {{-- Beschrijving --}}
         <div>
           <label class="block text-sm font-medium mb-1">Beschrijving</label>
           <textarea name="beschrijving" rows="3"
                     class="w-full border border-blue-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300">{{ old('beschrijving', $material->beschrijving) }}</textarea>
         </div>
 
-        {{-- Acties --}}
         <div class="flex justify-end gap-2 pt-4">
           <a href="{{ route('admin.materials.index') }}"
              class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 text-sm">Annuleren</a>
@@ -66,7 +60,6 @@
     </div>
   </div>
 
-  {{-- Footer --}}
   @include('partials.footer')
 
 </body>

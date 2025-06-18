@@ -10,6 +10,7 @@
   @include('partials.admin-nav')
 
   <div class="max-w-6xl mx-auto px-6 py-8">
+
     <h1 class="text-2xl font-bold text-blue-600 mb-6 text-center">
       ➕ Beheer Materiaal
     </h1>
@@ -34,16 +35,11 @@
       </form>
     </div>
 
-    {{-- ➕ Actieknoppen --}}
-    <div class="text-center mb-6 flex flex-col sm:flex-row justify-center gap-4">
+    {{-- ➕ Nieuw materiaal --}}
+    <div class="text-center mb-6">
       <a href="{{ route('admin.materials.create') }}"
          class="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600 text-sm font-semibold shadow">
         ➕ Nieuw materiaal
-      </a>
-
-      <a href="{{ route('admin.categories.create') }}"
-         class="bg-green-500 text-white px-5 py-2 rounded hover:bg-green-600 text-sm font-semibold shadow">
-        ➕ Nieuwe categorie
       </a>
     </div>
 
@@ -88,5 +84,6 @@
   </div>
 
   @include('partials.footer')
+
 </body>
 </html>
