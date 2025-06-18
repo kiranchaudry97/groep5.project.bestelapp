@@ -12,7 +12,6 @@
   <div class="max-w-7xl mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6 text-center">📦 Materiaal bestellen</h1>
 
-    {{-- 📸 Categorie-tegels --}}
     @php
       $categorieAfbeeldingen = [
         '👷‍♂ PBM' => 'pbm.jpg',
@@ -33,9 +32,10 @@
       ];
 
       $uniekeCats = collect($allCategories)->unique()->sort()->values();
-      $dropdownCats = array_keys($categorieLabels); // 🔍 Filter dropdown op gestandaardiseerde emoji-categorieën
+      $dropdownCats = array_keys($categorieLabels);
     @endphp
 
+    {{-- 📸 Tegels --}}
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
       @foreach ($uniekeCats as $cat)
         @php
@@ -59,15 +59,19 @@
       @endforeach
     </div>
 
-    {{-- 🔍 Filters --}}
-    <form method="GET" class="flex flex-wrap items-center justify-center gap-2 bg-white p-4 rounded-md border border-blue-300 shadow w-full max-w-4xl mx-auto mb-8">
+    {{-- 🔍 Filters (met Enter support) --}}
+    <form method="GET"
+          class="flex flex-wrap items-center justify-center gap-2 bg-white p-4 rounded-md border border-blue-300 shadow w-full max-w-4xl mx-auto mb-8">
+      
+      {{-- Zoekveld --}}
       <div class="relative w-full sm:w-auto">
         <span class="absolute inset-y-0 left-3 flex items-center text-gray-500">🔍</span>
         <input type="text" name="search" value="{{ request('search') }}"
-               placeholder="zoek materiaal...."
+               placeholder="Zoek materiaal..."
                class="pl-10 pr-4 py-2 rounded-full border border-blue-300 focus:ring-blue-400 focus:border-blue-400 text-sm w-full sm:w-64">
       </div>
 
+      {{-- Dropdown --}}
       <select name="categorie"
               class="rounded-full border border-blue-300 px-4 py-2 text-sm focus:ring-blue-400 focus:border-blue-400 w-full sm:w-48">
         <option value="">Categorie</option>
@@ -76,6 +80,7 @@
         @endforeach
       </select>
 
+      {{-- Knoppen --}}
       <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-600">Filter</button>
 
       <a href="{{ route('technieker.materials.index') }}"
@@ -84,7 +89,7 @@
       </a>
     </form>
 
-    {{-- 📋 Materialen in grid --}}
+    {{-- 📋 Materialen --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       @forelse ($materials as $material)
         <div class="bg-gray-300 rounded-md p-4 shadow flex flex-col gap-2">
@@ -112,7 +117,7 @@
       @endforelse
     </div>
 
-    {{-- 🛒 Winkelmand-link --}}
+    {{-- 🛒 Winkelmand --}}
     <div class="text-center mt-8 text-sm">
       <a href="{{ route('technieker.cart.view') }}" class="text-blue-600 hover:underline">🛒 Bekijk winkelmand</a>
     </div>

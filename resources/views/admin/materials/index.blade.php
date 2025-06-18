@@ -21,9 +21,18 @@
       $allCategories = \App\Models\Category::orderBy('naam')->pluck('naam');
     @endphp
 
-    {{-- 🔍 Filter --}}
+    {{-- 🔍 Filterformulier --}}
     <div class="flex justify-center mb-6">
-      <form method="GET" class="flex flex-wrap gap-2 items-center bg-blue-50 p-4 rounded shadow-md border max-w-2xl w-full">
+      <form method="GET" action="{{ route('admin.materials.index') }}"
+            class="flex flex-wrap gap-2 items-center bg-blue-50 p-4 rounded shadow-md border max-w-2xl w-full">
+
+        {{-- Zoekveld --}}
+        <input type="text" name="search" value="{{ request('search') }}"
+               placeholder="Zoek op naam..."
+               class="border border-blue-300 rounded px-4 py-2 text-sm w-full sm:w-auto"
+               onkeydown="if (event.key === 'Enter') this.form.submit()">
+
+        {{-- Categorie dropdown --}}
         <select name="categorie"
                 class="border border-blue-300 rounded px-4 py-2 text-sm flex-1 focus:outline-none focus:ring focus:ring-blue-300">
           <option value="">Alle categorieën</option>
@@ -31,9 +40,13 @@
             <option value="{{ $cat }}" @selected(request('categorie') == $cat)>{{ $cat }}</option>
           @endforeach
         </select>
+
+        {{-- Filterknop --}}
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded text-sm hover:bg-blue-600">
           🔍 Filter
         </button>
+
+        {{-- Reset --}}
         <a href="{{ route('admin.materials.index') }}"
            class="bg-gray-200 text-gray-800 px-4 py-2 rounded text-sm hover:bg-gray-300">
           ♻ Reset

@@ -11,89 +11,69 @@ use Normalizer;
 class MaterialController extends Controller
 {
     /**
-     * Haal alle unieke categorieën op uit de Category-tabel.
-     */
-    protected function getUniekeCategorieën()
-    {
-        return Category::orderBy('naam')->pluck('naam');
-    }
-
-    /**
-     * Toon overzicht van alle materialen, met optionele filtering op categorie.
+     * Toon overzicht van alle materialen met zoek- en filteropties.
      */
     public function index(Request $request)
     {
         $query = Material::query();
 
+        // 🔍 Zoek op naam (case-insensitive)
+        if ($request->filled('search')) {
+            $zoekterm = strtolower(trim($request->search));
+            $query->whereRaw('LOWER(naam) LIKE ?', ['%' . $zoekterm . '%']);
+        }
+
+        // 📂 Filter op categorie
         if ($request->filled('categorie')) {
             $query->where('categorie', $request->categorie);
         }
 
+        // 📄 Materialen ophalen
         $materials = $query->orderBy('naam')->get();
-        $allCategories = $this->getUniekeCategorieën();
+
+        // 📦 Categorieën uit de category-tabel
+        $allCategories = Category::orderBy('naam')->pluck('naam');
 
         return view('admin.materials.index', compact('materials', 'allCategories'));
     }
 
     /**
-     * Toon het formulier om een nieuw materiaal toe te voegen.
+     * Formulier voor nieuw materiaal.
      */
     public function create()
     {
-        $allCategories = $this->getUniekeCategorieën();
+        $allCategories = Category::orderBy('naam')->pluck('naam');
         return view('admin.materials.create', compact('allCategories'));
     }
 
     /**
-     * Verwerk het aanmaken van een nieuw materiaal.
+     * Materiaal opslaan.
      */
     public function store(Request $request)
     {
         $request->validate([
             'naam' => 'required|string|max:255',
-            'categorie_bestaand' => 'nullable|string|max:255',
-            'categorie_nieuw' => 'nullable|string|max:255',
+            'categorie' => 'required|string|max:255',
             'voorraad' => 'required|integer|min:0',
             'beschrijving' => 'nullable|string|max:1000',
         ]);
 
-        // 🔁 Gebruik nieuwe of bestaande categorie
-        $categorie = $request->categorie_nieuw ?: $request->categorie_bestaand;
-
-        // Indien nieuwe categorie is ingevuld, voeg toe aan Category-tabel
-        if ($request->filled('categorie_nieuw')) {
-            Category::firstOrCreate(['naam' => $categorie]);
-        }
-
-        Material::create([
-            'naam' => $request->naam,
-            'categorie' => $categorie,
-            'voorraad' => $request->voorraad,
-            'beschrijving' => $request->beschrijving,
-        ]);
+        Material::create($request->only(['naam', 'categorie', 'voorraad', 'beschrijving']));
 
         return redirect()->route('admin.materials.index')->with('status', 'Materiaal toegevoegd.');
     }
 
     /**
-     * Toon details van een materiaal.
-     */
-    public function show(Material $material)
-    {
-        return view('admin.materials.show', compact('material'));
-    }
-
-    /**
-     * Toon formulier om een materiaal te bewerken.
+     * Materiaal bewerken.
      */
     public function edit(Material $material)
     {
-        $allCategories = $this->getUniekeCategorieën();
+        $allCategories = Category::orderBy('naam')->pluck('naam');
         return view('admin.materials.edit', compact('material', 'allCategories'));
     }
 
     /**
-     * Verwerk het bijwerken van een materiaal.
+     * Update bewerking opslaan.
      */
     public function update(Request $request, Material $material)
     {
@@ -110,11 +90,25 @@ class MaterialController extends Controller
     }
 
     /**
-     * Verwijder een materiaal uit de database.
+     * Materiaal verwijderen.
      */
     public function destroy(Material $material)
     {
         $material->delete();
+
         return redirect()->route('admin.materials.index')->with('status', 'Materiaal verwijderd.');
+    }
+
+    /**
+     * Unieke categorieën ophalen — alleen gebruikt als fallback.
+     */
+    protected function getUniekeCategorieën()
+    {
+        return Material::pluck('categorie')
+            ->filter()
+            ->map(fn($cat) => normalizer_normalize(trim($cat), \Normalizer::FORM_C))
+            ->unique()
+            ->sort()
+            ->values();
     }
 }

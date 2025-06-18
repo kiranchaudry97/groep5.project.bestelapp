@@ -16,8 +16,10 @@ class OrderController extends Controller
     {
         $query = Material::query();
 
+        // ✅ Case-insensitive zoekfunctionaliteit
         if ($request->filled('search')) {
-            $query->where('naam', 'like', '%' . $request->search . '%');
+            $searchTerm = strtolower($request->search);
+            $query->whereRaw('LOWER(naam) LIKE ?', ['%' . $searchTerm . '%']);
         }
 
         if ($request->filled('categorie')) {
@@ -92,7 +94,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'leverdatum' => 'required|date|after_or_equal:today',
-            'adres' => 'required|string|max:255', // ✅ Nieuw veld
+            'adres' => 'required|string|max:255',
         ]);
 
         $cart = session('cart', []);
@@ -107,7 +109,7 @@ class OrderController extends Controller
                 'user_id' => auth()->id(),
                 'status' => 'in_behandeling',
                 'leverdatum' => $request->leverdatum,
-                'adres' => $request->adres, // ✅ Adres opslaan
+                'adres' => $request->adres,
             ]);
 
             foreach ($cart as $materialId => $aantal) {

@@ -54,9 +54,12 @@
               <p class="text-sm text-gray-500">
                 🚚 Leverdatum: <strong>{{ \Carbon\Carbon::parse($order->leverdatum)->format('d-m-Y') }}</strong>
               </p>
+              <p class="text-sm text-gray-500">
+                🏠 Leveradres: <strong>{{ $order->adres ?? 'Niet opgegeven' }}</strong>
+              </p>
             </div>
 
-            {{-- Status aanpassen --}}
+            {{-- ✅ Status aanpassen --}}
             <form method="POST" action="{{ route('admin.bestellingen.status', $order) }}">
               @csrf
               <select name="status" onchange="this.form.submit()"
