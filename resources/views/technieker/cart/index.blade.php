@@ -52,10 +52,11 @@
           </tbody>
         </table>
 
-        {{-- ✅ Bestelformulier met leverdatum --}}
+        {{-- ✅ Bestelformulier met leverdatum en leveradres --}}
         <form method="POST" action="{{ route('technieker.cart.submit') }}" class="mt-6 space-y-4">
           @csrf
 
+          {{-- Leverdatum --}}
           <div>
             <label for="leverdatum" class="block text-sm font-medium text-gray-700 mb-1">
               Leverdatum <span class="text-red-500">*</span>
@@ -64,6 +65,18 @@
                    class="border border-gray-300 rounded px-3 py-2 text-sm w-full md:w-1/2"
                    min="{{ date('Y-m-d') }}">
             @error('leverdatum')
+              <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+            @enderror
+          </div>
+
+          {{-- Leveradres --}}
+          <div>
+            <label for="adres" class="block text-sm font-medium text-gray-700 mb-1">
+              Leveradres <span class="text-red-500">*</span>
+            </label>
+            <input type="text" name="adres" id="adres" required placeholder="Bijv. Steenstraat 123, 9000 Gent"
+                   class="border border-gray-300 rounded px-3 py-2 text-sm w-full">
+            @error('adres')
               <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
             @enderror
           </div>

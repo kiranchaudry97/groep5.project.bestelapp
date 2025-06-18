@@ -16,20 +16,16 @@ class OrderController extends Controller
     {
         $query = Material::query();
 
-        // Zoek op naam
         if ($request->filled('search')) {
             $query->where('naam', 'like', '%' . $request->search . '%');
         }
 
-        // Filter op categorie
         if ($request->filled('categorie')) {
             $query->where('categorie', $request->categorie);
         }
 
-        // Materialen alfabetisch sorteren
         $materials = $query->orderBy('naam')->get();
 
-        // Unieke, opgeschoonde categorieën ophalen
         $allCategories = Material::pluck('categorie')
             ->map(function ($cat) {
                 $cleaned = trim(preg_replace('/\s+/', ' ', $cat));
@@ -52,22 +48,20 @@ class OrderController extends Controller
         $material = Material::findOrFail($request->material_id);
         $aantal = $request->aantal;
 
-        // Voorraadcontrole
         if ($aantal > $material->voorraad) {
             return back()->with('error', 'Niet genoeg voorraad beschikbaar.');
         }
 
-        // Voorraad verminderen
         $material->voorraad -= $aantal;
         $material->save();
 
-        // Toevoegen aan session cart
         $cart = session()->get('cart', []);
         if (isset($cart[$request->material_id])) {
             $cart[$request->material_id] += $aantal;
         } else {
             $cart[$request->material_id] = $aantal;
         }
+
         session()->put('cart', $cart);
 
         return back()->with('success', 'Materiaal toegevoegd en voorraad bijgewerkt.');
@@ -80,10 +74,8 @@ class OrderController extends Controller
         ]);
 
         $cart = session()->get('cart', []);
-        if (isset($cart[$request->material_id])) {
-            unset($cart[$request->material_id]);
-            session()->put('cart', $cart);
-        }
+        unset($cart[$request->material_id]);
+        session()->put('cart', $cart);
 
         return back()->with('status', 'Materiaal verwijderd uit winkelmand.');
     }
@@ -100,6 +92,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'leverdatum' => 'required|date|after_or_equal:today',
+            'adres' => 'required|string|max:255', // ✅ Nieuw veld
         ]);
 
         $cart = session('cart', []);
@@ -114,6 +107,7 @@ class OrderController extends Controller
                 'user_id' => auth()->id(),
                 'status' => 'in_behandeling',
                 'leverdatum' => $request->leverdatum,
+                'adres' => $request->adres, // ✅ Adres opslaan
             ]);
 
             foreach ($cart as $materialId => $aantal) {
@@ -125,7 +119,6 @@ class OrderController extends Controller
             }
 
             session()->forget('cart');
-
             DB::commit();
 
             return redirect()->route('technieker.dashboard')->with('status', 'Bestelling succesvol geplaatst!');
@@ -162,7 +155,6 @@ class OrderController extends Controller
             return back()->with('error', 'Deze bestelling kan niet worden geannuleerd.');
         }
 
-        // ✅ Voorraad terugzetten
         foreach ($order->items as $item) {
             $material = $item->material;
             $material->voorraad += $item->aantal;
