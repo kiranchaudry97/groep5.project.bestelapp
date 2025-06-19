@@ -76,26 +76,6 @@
 
 
 
-groep5.project.bestelapp/
-├── app/
-│   ├── Models/
-│   └── Http/
-│       ├── Controllers/
-│       │   ├── Admin/
-│       │   └── Technieker/
-├── resources/views/
-│   ├── admin/
-│   ├── technieker/
-│   └── partials/
-├── routes/
-│   └── web.php
-├── database/
-│   └── migrations/
-├── public/
-│   └── images/
-│       └── categorieën/
-├── composer.json
----
 
 ## 🧠 Rolstructuur
 
