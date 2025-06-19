@@ -77,16 +77,21 @@
 groep5.project.bestelapp/
 ├── app/
 │   ├── Models/
-│   ├── Http/
-│   │   ├── Controllers/Admin/
-│   │   └── Controllers/Technieker/
+│   └── Http/
+│       ├── Controllers/
+│       │   ├── Admin/
+│       │   └── Technieker/
 ├── resources/views/
 │   ├── admin/
 │   ├── technieker/
 │   └── partials/
-├── routes/web.php
-├── database/migrations/
-├── public/images/categorieën/
+├── routes/
+│   └── web.php
+├── database/
+│   └── migrations/
+├── public/
+│   └── images/
+│       └── categorieën/
 ├── composer.json
 
 ---
