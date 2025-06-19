@@ -17,7 +17,7 @@
 - Materialen filteren en zoeken
 - Materiaal toevoegen aan winkelmand
 - Bestelling plaatsen met leverdatum en adres
-- Vorige bestellingen bekijken of annuleren
+- Vorige bestellingen bekijken 
 
 ---
 
