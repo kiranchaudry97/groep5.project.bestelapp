@@ -16,7 +16,7 @@ class OrderController extends Controller
     {
         $query = Material::query();
 
-        // ✅ Case-insensitive zoekfunctionaliteit
+        // ✅ Case-insensitive zoeken
         if ($request->filled('search')) {
             $searchTerm = strtolower($request->search);
             $query->whereRaw('LOWER(naam) LIKE ?', ['%' . $searchTerm . '%']);
@@ -58,15 +58,10 @@ class OrderController extends Controller
         $material->save();
 
         $cart = session()->get('cart', []);
-        if (isset($cart[$request->material_id])) {
-            $cart[$request->material_id] += $aantal;
-        } else {
-            $cart[$request->material_id] = $aantal;
-        }
-
+        $cart[$material->id] = ($cart[$material->id] ?? 0) + $aantal;
         session()->put('cart', $cart);
 
-        return back()->with('success', 'Materiaal toegevoegd en voorraad bijgewerkt.');
+        return back()->with('status', 'Materiaal toegevoegd aan winkelmand.');
     }
 
     public function removeFromCart(Request $request)
@@ -123,7 +118,7 @@ class OrderController extends Controller
             session()->forget('cart');
             DB::commit();
 
-            return redirect()->route('technieker.dashboard')->with('status', 'Bestelling succesvol geplaatst!');
+            return redirect()->route('technieker.cart.view')->with('status', '✅ Bestelling succesvol geplaatst!');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Er ging iets mis bij het plaatsen van je bestelling.');

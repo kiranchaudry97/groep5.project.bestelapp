@@ -14,10 +14,16 @@
     <div class="max-w-4xl mx-auto p-6">
       <h1 class="text-2xl font-bold mb-6 text-center">🛒 Mijn Winkelmand</h1>
 
-      {{-- ✅ Statusmelding --}}
+      {{-- ✅ Flash-meldingen --}}
       @if (session('status'))
         <div class="bg-green-100 border border-green-300 text-green-700 text-sm px-4 py-2 rounded mb-4 text-center">
-          ✅ {{ session('status') }}
+           {{ session('status') }}
+        </div>
+      @endif
+
+      @if (session('error'))
+        <div class="bg-red-100 border border-red-300 text-red-700 text-sm px-4 py-2 rounded mb-4 text-center">
+          ⚠ {{ session('error') }}
         </div>
       @endif
 
@@ -52,7 +58,7 @@
           </tbody>
         </table>
 
-        {{-- ✅ Bestelformulier met leverdatum en leveradres --}}
+        {{-- ✅ Bestelformulier --}}
         <form method="POST" action="{{ route('technieker.cart.submit') }}" class="mt-6 space-y-4">
           @csrf
 
