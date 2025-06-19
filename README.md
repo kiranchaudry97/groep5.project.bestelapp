@@ -165,6 +165,7 @@ php artisan serve
 ## 🧠 Ontwikkelingsteam
 	•	Projectnaam: Bestelapp
 	•	Team: Groep 5
+	• Vak: Programming Project
 	•	Academiejaar: 2024–2025
 	•	School: Erasmushogeschool Brussel
 	•	Opdrachtgever: Aquafin
@@ -175,6 +176,11 @@ php artisan serve
 	•	Damian Viracocha
 	•	Elion Rexhepi
 	•	Sorena Mohammad Rafiei Nazari
+
+## Gebruikte Bronnen
+AI Assistants:
+- GitHub Copilot voor code suggestions en debugging tijdens development
+- ChatGPT voor Database 
 
 ---
 
