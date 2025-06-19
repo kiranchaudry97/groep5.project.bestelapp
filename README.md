@@ -1,63 +1,132 @@
+# 📦 Bestelapp – Laravel gebaseerde materiaalbeheer en bestelapplicatie voor Aquafin
 
-# 📦 Bestelapp – Laravel gebaseerde materiaalbeheer en bestelapplicatie
-
-
-**Bestelapp** is een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
-=======
-**Bestelapp** Voor bedrijf Aquafin aangemaakt op een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
->> ef7a0551928ba70593feea0bcede9bfe45ae908a
-=======
-**Bestelapp** Voor bedrijf Aquafin aangemaakt op een  Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd worden en bestellingen opgevolgd kunnen worden.  
->> e5ddf02b73af5892cdc9c7fb6dbdde15ac759650
-
-De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak van authenticatie, autorisatie, validatie en voorraadbeheer.
+*Bestelapp* is een intuïtieve Laravel 10-webapplicatie ontwikkeld door studenten van Groep 5 (Erasmushogeschool Brussel), waarmee *techniekers materialen kunnen bestellen, **admins voorraad beheren* en *bestellingen opgevolgd* kunnen worden.
 
 ---
 
-## 📚 Documentatie
+## 🎯 Functionaliteiten
 
+### 🧰 Voor Admins
+- CRUD voor materialen en categorieën
+- Realtime voorraadbeheer
+- Bestellingen opvolgen en status wijzigen
+- Statistieken over bestelstatussen
+- Rolgebaseerde toegang via middleware
 
-De Bestelapp bevat gestructureerde RESTful routes, onderverdeeld per rol:
-=======
-De Bestelapp bevat gestructureerde routes, onderverdeeld per rol:
->>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
-
-- `/technieker/materials`: toon beschikbare materialen
-- `/technieker/cart`: beheer winkelmand
-- `/technieker/orders`: overzicht van geplaatste bestellingen
-- `/admin/materials`: beheer van materialen
-- `/admin/bestellingen`: opvolging van alle bestellingen
-
-
-
----
-
-## ⚙️ Efficiënt en robuust
-
-De applicatie ondersteunt:
-
-- **Sessiegebaseerd winkelmandbeheer**
-- **Directe voorraadupdates bij bestelling**
-- **Rollback van voorraad bij annulatie**
-- **Rollenbeheer met [Spatie Laravel-permission](https://spatie.be/docs/laravel-permission)**
-- **Responsieve UI via TailwindCSS**
-
-Bestelapp verwerkt bestellingen met robuuste foutafhandeling, validatie en herbruikbare Blade-componenten.
+### 🛠 Voor Techniekers
+- Materialen filteren en zoeken
+- Materiaal toevoegen aan winkelmand
+- Bestelling plaatsen met leverdatum en adres
+- Vorige bestellingen bekijken of annuleren
 
 ---
 
-## 💡 Gebruik
+### 🧰 Materiaalbeheer (Admin)
 
-### Winkelmand toevoegen
+- Overzicht van alle materialen
+- Categorie-filter en zoekfunctie
+- Voorraad bijhouden per item
+- CRUD-functionaliteit (aanmaken, wijzigen, verwijderen)
+- Toevoegen van nieuwe categorieën
+
+### 🛒 Winkelmand & Bestellen (Technieker)
+
+- Materialen toevoegen aan winkelmand
+- Automatische voorraadvermindering
+- Validatie bij te weinig voorraad
+- Leverdatum en leveradres opgeven
+- Bestelling verzenden met bevestigingsmelding
+
+### 📦 Bestellingen
+
+- Technieker kan bestellingen raadplegen en annuleren (zolang in behandeling)
+- Admin kan status aanpassen (in behandeling, verzonden, afgehandeld)
+- Leverinformatie en materiaaloverzicht per bestelling zichtbaar
+
+---
+
+## 🗃 Datamodellen
+
+| Model      | Velden                                  |
+|------------|------------------------------------------|
+| User     | naam, e-mail, wachtwoord, rol            |
+| Material | naam, categorie, voorraad, beschrijving  |
+| Order    | user_id, leverdatum, adres, status       |
+| OrderItem| order_id, material_id, aantal            |
+| Category | naam                                     |
+
+---
+
+
+## 📋 Gebruikte Technologieën
+
+| Component           | Stack                           |
+|--------------------|----------------------------------|
+| Framework          | Laravel 10                       |
+| Styling            | Tailwind CSS                     |
+| Autorisatie        | Spatie Laravel Permission        |
+| Frontend templating| Blade                            |
+| Database           | MySQL / SQLite                   |
+| Validatie          | Laravel Form Requests            |
+| Beveiliging        | CSRF, bcrypt, middleware         |
+
+---
+
+## 📂 Structuur
+
+groep5.project.bestelapp/
+├── app/
+│   ├── Models/
+│   ├── Http/
+│   │   ├── Controllers/Admin/
+│   │   └── Controllers/Technieker/
+├── resources/views/
+│   ├── admin/
+│   ├── technieker/
+│   └── partials/
+├── routes/web.php
+├── database/migrations/
+├── public/images/categorieën/
+├── composer.json
+
+---
+
+## 🧠 Rolstructuur
+
+| Rol        | Mogelijkheden                                |
+|------------|-----------------------------------------------|
+| Admin      | Materiaalbeheer, bestellingen opvolgen        |
+| Technieker | Materialen bekijken, bestellen, winkelmand    |
+
+---
+
+## 📈 Beheer
+	•	Materiaalbeheer met naam, categorie, voorraad, beschrijving
+	•	Nieuwe categorie toevoegen via formulier
+	•	Categorieën normaliseren (unicodestandaard)
+
+⸻
+
+## 💡 Extra
+	•	Leveradres wordt opgeslagen bij bestelling
+	•	Admin kan bestellingstatus aanpassen
+	•	Bestellingen filterbaar op status
+	•	Technieker ziet eigen bestellingen & detail
+
+## 👤 Testaccounts
+
+Gebruik onderstaande testaccounts om in te loggen en de functionaliteiten van de applicatie te testen.
+
+| Rol        | Gebruikersnaam (E-mail) | Wachtwoord |
+|------------|--------------------------|------------|
+| *Admin*  | admin@aquafin.be         | admin123   |
+| *Technieker* | tech@aquafin.be      | tech123    |
+
+## 🧪 Voorbeeldcode
+
+### ✅ Winkelmand toevoegen
 
 ```php
-$request->validate([
-  'material_id' => 'required|exists:materials,id',
-  'aantal' => 'required|integer|min:1',
-]);
-
-$material = Material::findOrFail($request->material_id);
-
 if ($aantal > $material->voorraad) {
   return back()->with('error', 'Niet genoeg voorraad beschikbaar.');
 }
@@ -65,41 +134,15 @@ if ($aantal > $material->voorraad) {
 $material->voorraad -= $aantal;
 $material->save();
 ```
+## 🚀 Installatie
 
-### Bestelling opslaan
+### Vereisten
+- PHP 8.3+
+- Composer
+- MySQL / SQLite
+- Node.js (voor assets - optioneel)
 
-```php
-$order = Order::create([
-  'user_id' => auth()->id(),
-  'leverdatum' => $request->leverdatum,
-  'status' => 'in_behandeling',
-]);
-
-foreach ($cart as $materialId => $aantal) {
-  OrderItem::create([
-    'order_id' => $order->id,
-    'material_id' => $materialId,
-    'aantal' => $aantal,
-  ]);
-}
-```
-
----
-
-## 🎯 Features
-
-| Functionaliteit            | Ondersteund |
-|----------------------------|-------------|
-| Materialen bestellen       | ✅          |
-| Winkelmand beheren         | ✅          |
-| Bestellingen inzien        | ✅          |
-| Rolgebaseerde toegang      | ✅          |
-| Admin dashboard            | ✅          |
-| Realtime voorraadcontrole  | ✅          |
-
----
-
-## 📦 Installatie
+### Stappen
 
 ```bash
 git clone https://github.com/kiranchaudry97/groep5.project.bestelapp.git
@@ -109,109 +152,26 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 php artisan serve
-```
-
-Toegang: [http://localhost:8000](http://localhost:8000)
-
----
-
-## 🔐 Testaccounts
-
-| Rol        | Email                 | Wachtwoord |
-|------------|------------------------|------------|
-| Admin      | admin@aquafin.be      | admin123   |
-| Technieker | tech@aquafin.be | tech123   |
-
----
-
-## 📂 Structuur
-
-- `routes/web.php`: gesegmenteerde routing
-- `app/Models`: Eloquent modellen zoals `Material`, `Order`
-- `app/Http/Controllers/Admin`: Adminlogica
-- `app/Http/Controllers/Technieker`: Techniekerlogica
-- `resources/views/`: UI views in Blade
-
----
-
-## 🔒 Beveiliging
-
-- Wachtwoord-hashing
-- CSRF-bescherming
-- Toegangscontrole via middleware en policies
-- Validatie van invoer op controller-niveau
-
----
-
-## 🧪 Testen
-
-Testbare onderdelen zoals:
-- Voorraadverificatie
-- Bestelbevestiging
-- Rolvalidatie
-
-```bash
-php artisan test
-```
-
----
-
-## 📦 Releases
-
-
-Gebruik GitHub Tags voor versiebeheer:
-=======
-
-Gebruik GitHub Tags voor versiebeheer:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
----
+'''
 
 ## 🧠 Ontwikkelingsteam
+	•	Projectnaam: Bestelapp
+	•	Team: Groep 5
+	•	Academiejaar: 2024–2025
+	•	School: Erasmushogeschool Brussel
+	•	Opdrachtgever: Aquafin
 
-- **Projectnaam**: Bestelapp
-- **Team**: Groep 5
-- **Teamleden**: Kiran Chaudry, Sorena, Yazid, Damian, Elion
-- **Academiejaar**: 2024–2025
-- **School**: Erasmushogeschool Brussel
+## 👥 Teamleden
+	•	Kiran Chaudry
+	•	Yazid El Yazghi
+	•	Damian Viracocha
+	•	Elion Rexhepi
+	•	Sorena Mohammad Rafiei Nazari
 
----
+⸻
 
-## 📜 Licentie
+📜 Licentie
 
-MIT License – open source en vrij aanpasbaar binnen educatieve context.
-
->> ef7a0551928ba70593feea0bcede9bfe45ae908a
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
----
-
-## 🧠 Ontwikkelingsteam
-
-- **Projectnaam**: Bestelapp
-- **Team**: Groep 5
-- **Teamleden**: Kiran Chaudry, Sorena, Yazid, Damian, Elion
-- **Academiejaar**: 2024–2025
-- **School**: Erasmushogeschool Brussel
-
----
-
-## 📜 Licentie
+MIT License – vrij aanpasbaar binnen educatieve context.
 
 Dit project is ontwikkeld als onderdeel van een schoolopdracht aan de Hogeschool Erasmus, binnen het kader van het Groep 5 Project – BestelApp.
-
-© 2025 – Kiran, Yazid, Elion, Damain en Sorena
-
-Hierbij wordt toestemming verleend om deze software vrij te gebruiken, kopiëren, wijzigen, publiceren en verspreiden, met inachtneming van de volgende voorwaarden:
-	•	De namen van de auteurs en de hogeschool mogen niet worden gebruikt om afgeleide werken te promoten zonder expliciete schriftelijke toestemming.
-	•	Deze software wordt geleverd “zoals het is”, zonder enige vorm van garantie.
-
-De code is gelicentieerd onder de voorwaarden van de MIT-licentie.
