@@ -74,7 +74,7 @@
 
 ## 📂 Mappenstructuur
 
-
+![Beschrijving](https://github.com/kiranchaudry97/groep5.project.bestelapp/blob/7637011007421da999553358e723a9659f76c927/foto/stuctuur.jpg)
 
 
 ## 🧠 Rolstructuur
