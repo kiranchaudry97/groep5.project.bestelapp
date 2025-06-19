@@ -170,7 +170,7 @@ php artisan serve
 	•	Opdrachtgever: Aquafin
 
 ## 👥 Teamleden
-	•	Kiran Chaudry
+	•	Kiran Chaud-Ry
 	•	Yazid El Yazghi
 	•	Damian Viracocha
 	•	Elion Rexhepi
