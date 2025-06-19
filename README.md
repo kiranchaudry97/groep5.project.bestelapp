@@ -165,7 +165,7 @@ php artisan serve
 ## 🧠 Ontwikkelingsteam
 	•	Projectnaam: Bestelapp
 	•	Team: Groep 5
-	• Vak: Programming Project
+	•  Vak: Programming Project
 	•	Academiejaar: 2024–2025
 	•	School: Erasmushogeschool Brussel
 	•	Opdrachtgever: Aquafin
