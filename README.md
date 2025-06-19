@@ -72,7 +72,9 @@
 
 ---
 
-## 📂 Structuur
+## 📂 Mappenstructuur
+
+
 
 groep5.project.bestelapp/
 ├── app/
@@ -93,7 +95,6 @@ groep5.project.bestelapp/
 │   └── images/
 │       └── categorieën/
 ├── composer.json
-
 ---
 
 ## 🧠 Rolstructuur
