@@ -206,4 +206,12 @@ git push origin v1.0.0
 
 ## 📜 Licentie
 
-MIT License – open source en vrij aanpasbaar binnen educatieve context.
+Dit project is ontwikkeld als onderdeel van een schoolopdracht aan de Hogeschool Erasmus, binnen het kader van het Groep 5 Project – BestelApp.
+
+© 2025 – Kiran, Yazid, Elion, Damain en Sorena
+
+Hierbij wordt toestemming verleend om deze software vrij te gebruiken, kopiëren, wijzigen, publiceren en verspreiden, met inachtneming van de volgende voorwaarden:
+	•	De namen van de auteurs en de hogeschool mogen niet worden gebruikt om afgeleide werken te promoten zonder expliciete schriftelijke toestemming.
+	•	Deze software wordt geleverd “zoals het is”, zonder enige vorm van garantie.
+
+De code is gelicentieerd onder de voorwaarden van de MIT-licentie.
