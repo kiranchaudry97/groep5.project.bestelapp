@@ -122,6 +122,14 @@ Gebruik onderstaande testaccounts om in te loggen en de functionaliteiten van de
 | *Admin*  | admin@aquafin.be         | admin123   |
 | *Technieker* | tech@aquafin.be      | tech123    |
 
+## 🔒 Beveiliging
+
+- Wachtwoord-hashing
+- CSRF-bescherming
+- Toegangscontrole via middleware en policies
+- Validatie van invoer op controller-niveau
+
+
 ## 🧪 Voorbeeldcode
 
 ### ✅ Winkelmand toevoegen
@@ -134,6 +142,18 @@ if ($aantal > $material->voorraad) {
 $material->voorraad -= $aantal;
 $material->save();
 ```
+
+## 🎯 Features
+
+| Functionaliteit            | Ondersteund |
+|----------------------------|-------------|
+| Materialen bestellen       | ✅          |
+| Winkelmand beheren         | ✅          |
+| Bestellingen inzien        | ✅          |
+| Rolgebaseerde toegang      | ✅          |
+| Admin dashboard            | ✅          |
+| Realtime voorraadcontrole  | ✅          |
+
 ## 🚀 Installatie
 
 ### Vereisten
@@ -152,7 +172,9 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 php artisan serve
+```
 
+---
 
 ## 🧠 Ontwikkelingsteam
 	•	Projectnaam: Bestelapp
@@ -168,9 +190,9 @@ php artisan serve
 	•	Elion Rexhepi
 	•	Sorena Mohammad Rafiei Nazari
 
-⸻
+---
 
-📜 Licentie
+## 📜 Licentie
 
 MIT License – vrij aanpasbaar binnen educatieve context.
 
