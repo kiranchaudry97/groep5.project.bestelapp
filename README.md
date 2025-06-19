@@ -5,10 +5,10 @@
 **Bestelapp** is een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
 =======
 **Bestelapp** Voor bedrijf Aquafin aangemaakt op een intuïtieve Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd en bestellingen nauwkeurig opgevolgd kunnen worden.  
->>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
+>> ef7a0551928ba70593feea0bcede9bfe45ae908a
 =======
 **Bestelapp** Voor bedrijf Aquafin aangemaakt op een  Laravel 10-webapplicatie waarmee techniekers materialen kunnen bestellen, voorraad kan worden beheerd worden en bestellingen opgevolgd kunnen worden.  
->>>>>>> e5ddf02b73af5892cdc9c7fb6dbdde15ac759650
+>> e5ddf02b73af5892cdc9c7fb6dbdde15ac759650
 
 De app is gebouwd met moderne webtechnologieën en volgt best practices op vlak van authenticatie, autorisatie, validatie en voorraadbeheer.
 
@@ -157,7 +157,7 @@ php artisan test
 ---
 
 ## 📦 Releases
-<<<<<<< HEAD
+
 
 Gebruik GitHub Tags voor versiebeheer:
 =======
@@ -185,7 +185,7 @@ git push origin v1.0.0
 
 MIT License – open source en vrij aanpasbaar binnen educatieve context.
 
->>>>>>> ef7a0551928ba70593feea0bcede9bfe45ae908a
+>> ef7a0551928ba70593feea0bcede9bfe45ae908a
 
 ```bash
 git tag v1.0.0
